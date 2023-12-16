@@ -1,3 +1,5 @@
+package SingleLinkedList_;
+
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
         HeroNode heroNode1 = new HeroNode(1, "hero1", "heronickname1");
@@ -37,13 +39,74 @@ public class SingleLinkedListDemo {
         singleLinkedList.del(4);
         singleLinkedList.list();
         System.out.println();
+
+        System.out.println("链表长度: " + getLength(singleLinkedList.getHead()));
+        System.out.println();
+
+        // 查找单链表中的倒数第k个节点
+        HeroNode lastNode = findLastIndexNode(singleLinkedList.getHead(), 2);
+        System.out.println(lastNode);
     }
+
+    // 查找单链表中的倒数第k个节点
+    // 1. 编写一个方法，接收head节点，同时接收一个index
+    // 2. index表示是倒数第index个节点
+    // 3. 先把链表从头到尾遍历，得到链表的总的长度
+    // 4. 得到size后，我们从链表的第一个开始遍历 (size - index)个
+    // 5. 如果找到了，则返回该节点，否则返回null
+    public static HeroNode findLastIndexNode(HeroNode head, int index) {
+        // 判断如果链表为空，返回null
+        if (head.next == null) {
+            return null;
+        }
+        // 第一个遍历得到链表的长度 (节点个数)
+        int size = getLength(head);
+        // 第二次遍历 size-index位置，就是我们倒数的第k个节点
+        // 先做一个index的校验
+        if (index <= 0 || index > size) {
+            System.out.println("index不合法");
+            return null;
+        }
+
+        // for循环定位到倒数的index
+        HeroNode temp = head.next;
+        for (int i = 0; i < size - index; i++) {
+            temp = temp.next;
+        }
+
+        return temp;
+    }
+
+
+
+    // 方法: 获取单链表的节点的个数
+    public static int getLength(HeroNode head) {
+        // 如果head为null，说明链表为空
+        if (head.next == null) {
+            return 0;
+        }
+
+        int length = 0;
+        HeroNode temp = head.next;
+
+        while (temp != null) {
+            length++;
+            temp = temp.next;
+        }
+
+        return length;
+    }
+
 }
 
 // 定义SingleLinkedList管理英雄
 class SingleLinkedList {
     // 初始化头节点，不存放具体的数据
     private HeroNode head = new HeroNode(0, "", "");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     // 添加节点，添加到最后
     // 思路: 当不考虑编号顺序时
@@ -181,6 +244,8 @@ class SingleLinkedList {
             temp = temp.next;
         }
     }
+
+
 }
 
 
@@ -199,7 +264,7 @@ class HeroNode {
 
     @Override
     public String toString() {
-        return "HeroNode{" +
+        return "SingleLinkedList_.HeroNode{" +
                 "no=" + no +
                 ", name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' + '}';
