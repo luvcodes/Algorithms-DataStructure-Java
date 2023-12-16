@@ -63,32 +63,38 @@ class SingleLinkedList {
         temp.next = heroNode;
     }
 
-    // 第二种方式 在添加英雄时，根据排名将英雄插入到指定位置
-    //
+    /**
+     * 第二种方式 在添加英雄时，根据no的值将英雄插入到有序的位置
+     * */
     public void addByOrder(HeroNode heroNode) {
 
         // 通过一个辅助指针来帮助找到添加的位置
-        // 因为单链表，因为我们找的temp是位于添加位置的前一个节点，否则插入不了
+        // 因为单链表，我们找的temp是位于添加位置的前一个节点，因为无法从后一个节点访问前一个节点
         HeroNode temp = head;
-        boolean flag = false; // 标识添加的编号是否存在，默认为false
+        // 标识添加的编号是否存在，默认为false
+        boolean flag = false;
 
         while (true) {
-            if (temp.next == null) { // 说明temp在链表的最后
+            // 说明temp在链表的最后
+            if (temp.next == null) {
                 break;
             }
-            // 拿temp的下一个节点比较
+            // 拿temp的下一个节点比较，因为这样才可以保证找到的值是夹在temp和temp.next之间的
             if (temp.next.no > heroNode.no) {
+                // 执行 break 跳出循环，因为找到了插入的正确位置。
                 break;
             } else if (temp.next.no == heroNode.no) { // 说明希望添加的heroNode的编号已经存在
-                flag = true; // 说明编号存在
+                // 修改flag成为true
+                flag = true;
                 break;
             }
-            temp = temp.next; // 后移
+            // 后移引用
+            temp = temp.next;
         }
 
         // 判断flag的值
         if (flag) {
-            // 不能添加，说明编号存在
+            // 如果是true，则不能添加，因为编号存在
             System.out.printf("The hero id of ready to insert is %d already exists\n", heroNode.no);
         } else {
             // 插入到temp后面
@@ -132,7 +138,6 @@ class SingleLinkedList {
 
     /**
      * 删除节点
-     *
      * head不能动，我们需要一个temp辅助节点来代表待删除节点的前一个节点
      * 所以是在验证temp.next.no是否等于待删除结点的no
      * */
