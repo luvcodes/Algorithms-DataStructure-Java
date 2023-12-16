@@ -144,10 +144,12 @@ class SingleLinkedList {
         return head;
     }
 
-    // 添加节点，添加到最后
-    // 思路: 当不考虑编号顺序时
-    // 1. 先找到最后一个节点
-    // 2. 将最后一个节点的next域指向新的节点
+    /**
+     * 添加节点，添加到最后
+     * 思路: 当不考虑编号顺序时
+     * 1. 先找到最后一个节点
+     * 2. 将最后一个节点的next域指向新的节点
+     * */
     public void add(HeroNode heroNode) {
         HeroNode temp = head; // head不能动，所以需要一个辅助变量遍历
         while (true) {
@@ -168,7 +170,7 @@ class SingleLinkedList {
     public void addByOrder(HeroNode heroNode) {
 
         // 通过一个辅助指针来帮助找到添加的位置
-        // 因为单链表，我们找的temp是位于添加位置的前一个节点，因为无法从后一个节点访问前一个节点
+        // 因为单链表，我们找的temp是位于添加位置的前一个节点，无法从后一个节点访问前一个节点
         HeroNode temp = head;
         // 标识添加的编号是否存在，默认为false
         boolean flag = false;
