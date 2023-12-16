@@ -25,35 +25,71 @@ public class SingleLinkedListDemo {
         System.out.println();
 
         // 测试修改节点的代码
-        HeroNode updateHeroNode = new HeroNode(2, "hero2_update", "hero2nickname2_update");
-        singleLinkedList.update(updateHeroNode);
-
-        singleLinkedList.list();
-        System.out.println();
+//        HeroNode updateHeroNode = new HeroNode(2, "hero2_update", "hero2nickname2_update");
+//        singleLinkedList.update(updateHeroNode);
+//        singleLinkedList.list();
+//        System.out.println();
 
         // 删除一个节点
-        singleLinkedList.del(1);
-        singleLinkedList.list();
-        System.out.println();
+//        singleLinkedList.del(1);
+//        singleLinkedList.list();
+//        System.out.println();
+//
+//        singleLinkedList.del(4);
+//        singleLinkedList.list();
+//        System.out.println();
 
-        singleLinkedList.del(4);
-        singleLinkedList.list();
-        System.out.println();
-
-        System.out.println("链表长度: " + getLength(singleLinkedList.getHead()));
-        System.out.println();
+        // 链表长度
+//        System.out.println("链表长度: " + getLength(singleLinkedList.getHead()));
+//        System.out.println();
 
         // 查找单链表中的倒数第k个节点
-        HeroNode lastNode = findLastIndexNode(singleLinkedList.getHead(), 2);
-        System.out.println(lastNode);
+//        HeroNode lastNode = findLastIndexNode(singleLinkedList.getHead(), 2);
+//        System.out.println(lastNode);
+//        System.out.println();
+
+        // 单链表的反转
+        System.out.println("反转前：");
+        singleLinkedList.list();
+        System.out.println("反转后: ");
+        reverseList(singleLinkedList.getHead());
+        singleLinkedList.list();
     }
 
-    // 查找单链表中的倒数第k个节点
-    // 1. 编写一个方法，接收head节点，同时接收一个index
-    // 2. index表示是倒数第index个节点
-    // 3. 先把链表从头到尾遍历，得到链表的总的长度
-    // 4. 得到size后，我们从链表的第一个开始遍历 (size - index)个
-    // 5. 如果找到了，则返回该节点，否则返回null
+    /**
+     * 单链表的反转
+     * */
+    public static void reverseList(HeroNode head) {
+        // 判断链表是否为空，或链表只有一个节点，直接返回
+        if (head.next == null || head.next.next == null) {
+            return;
+        }
+
+        // 遍历原来的链表
+        HeroNode temp = head.next;
+        HeroNode next = null; // 指向当前节点[temp]的下一个节点
+        HeroNode reverseHead = new HeroNode(0, "", ""); // 反转后的链表的头节点
+
+        // 遍历原来的链表，每遍历一个节点，就将其去除，并放在新的链表reverseHead的最前端
+        while (temp != null) {
+            next = temp.next; // 保存当前节点的下一个节点，后面需要使用
+            temp.next = reverseHead.next; // 将当前节点的下一个节点指向新的链表的最前端
+            reverseHead.next = temp; // 将新的链表的最前端指向当前节点
+            temp = next; // 将temp指向下一个节点
+        }
+
+        // 将head.next指向reverseHead.next，实现单链表的反转
+        head.next = reverseHead.next;
+    }
+
+    /**
+     * 查找单链表中的倒数第k个节点
+     * 1. 编写一个方法，接收head节点，同时接收一个index
+     * 2. index表示是倒数第index个节点
+     * 3. 先把链表从头到尾遍历，得到链表的总的长度
+     * 4. 得到size后，我们从链表的第一个开始遍历 (size - index)个
+     * 5. 如果找到了，则返回该节点，否则返回null
+     * */
     public static HeroNode findLastIndexNode(HeroNode head, int index) {
         // 判断如果链表为空，返回null
         if (head.next == null) {
@@ -166,7 +202,9 @@ class SingleLinkedList {
         }
     }
 
-    // 修改节点信息
+    /**
+     * 修改节点信息
+     * */
     // 1. 根据newHeroNode的no来修改
     public void update(HeroNode newHeroNode) {
         if (head.next == null) {
