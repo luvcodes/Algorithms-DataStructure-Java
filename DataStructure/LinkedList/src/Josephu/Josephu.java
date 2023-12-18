@@ -5,6 +5,9 @@ public class Josephu {
         CircleSingleLinkedList list = new CircleSingleLinkedList();
         list.addBoy(5);
         list.showBoy();
+        System.out.println();
+
+        list.countBoy(1, 2, 5); // 2 -> 4 -> 1 -> 5 -> 3
     }
 }
 
@@ -52,6 +55,52 @@ class CircleSingleLinkedList {
             }
             curBoy = curBoy.getNext(); // curBoy后移
         }
+    }
+
+    // 根据用户的输入，计算出节点出圈的顺序
+    /**
+     * @param startNo 表示从第几个节点开始数数
+     * @param countNum 表示数几下
+     * @param nums 表示最初有多少个节点
+     * */
+    public void countBoy(int startNo, int countNum, int nums) {
+        if (first == null || startNo < 1 || startNo > nums) {
+            System.out.println("参数输入有误");
+            return;
+        }
+        // 先把first节点移动到startNo位置
+        Boy helper = first;
+        // 创建辅助指针helper，事先应该指向环形链表的最后一个节点
+        while (true) {
+            if (helper.getNext() == first) { // 说明helper指向最后一个节点
+                break;
+            }
+            helper = helper.getNext();
+        }
+        // 小孩报数前，先让first和helper移动startNo-1次。因为要先让first和helper只想开始节点
+        for (int i = 0; i < startNo - 1; i++) {
+            first = first.getNext();
+            helper = helper.getNext();
+        }
+        // 当节点报数时，让first和helper的指针同时地移动countNum - 1次，然后出圈
+        // 循环操作，直到圈中只有一个节点
+        while (true) {
+            // 说明圈中只有一个节点
+            if (helper == first) {
+                break;
+            }
+            // 让first和helper的指针同时地移动countNum - 1次
+            for (int i = 0; i < countNum - 1; i++) {
+                first = first.getNext();
+                helper = helper.getNext();
+            }
+            // 这时first指向的节点就是要出圈的节点
+            System.out.printf("节点%d出圈\n", first.getId());
+            // 这时将first指向的节点出圈，first指向first的下一个节点
+            first = first.getNext();
+            helper.setNext(first); // 当出圈时，把first节点设置为helper的下一个节点。因为first节点出圈，helper节点就是first节点的下一个节点。
+        }
+        System.out.printf("最后留在圈中的节点编号: %d \n", first.getId());
     }
 }
 
