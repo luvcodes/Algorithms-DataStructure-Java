@@ -7,6 +7,7 @@ public class LinkedListStackDemo {
     public static void main(String[] args) {
         /**
          * 在栈的典型实现中，通常不会预先创建节点然后再将它们添加到栈中。
+         *
          * 相反，当调用 push 方法时，通常会在那一刻创建新的节点并将其加入到栈中。
          * */
         LinkedListStack stack = new LinkedListStack();
