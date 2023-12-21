@@ -1,4 +1,4 @@
-public class Main {
+public class Recursive {
     public static void main(String[] args) {
 //        test(4);
 
