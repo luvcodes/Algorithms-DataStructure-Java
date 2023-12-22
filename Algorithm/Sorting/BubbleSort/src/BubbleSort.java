@@ -3,8 +3,13 @@ import java.util.Arrays;
 public class BubbleSort {
     public static void main(String[] args) {
         int[] arr = {3, 9, -1, 10, -2};
+        System.out.println("排序前的数组: ");
+        System.out.println(Arrays.toString(arr));
+
         bubbleSort(arr);
 
+        System.out.println("排序后的数组: ");
+        System.out.println(Arrays.toString(arr));
     }
 
     public static void bubbleSort(int[] arr) {
@@ -22,8 +27,8 @@ public class BubbleSort {
                     arr[j + 1] = temp;
                 }
             }
-            System.out.println("第" + (i+1) + "趟排序后的数组: ");
-            System.out.println(Arrays.toString(arr));
+//            System.out.println("第" + (i+1) + "趟排序后的数组: ");
+//            System.out.println(Arrays.toString(arr));
 
             // 如果一趟排序没有发生交换，说明数组已经有序，提前结束
             if (!flag) {
