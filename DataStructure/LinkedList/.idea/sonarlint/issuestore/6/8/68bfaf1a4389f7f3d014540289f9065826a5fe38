@@ -1,0 +1,15 @@
+
+m
+java:S1192b"RDefine a constant instead of duplicating this literal "The list is empty" 3 times.(šèá®þÿÿÿÿ
+s	java:S135G"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆžÿÿÿÿÿ
+s	java:S135i"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆžÿÿÿÿÿ
+t	java:S135‡"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆžÿÿÿÿÿ
+j
+java:S1104¶"NMake id a static final constant or non-public and provide accessors if needed.(ÍéÌ‘øÿÿÿÿ
+g
+java:S1104·"PMake name a static final constant or non-public and provide accessors if needed.( þÍ¾
+s
+java:S1104¸"WMake description a static final constant or non-public and provide accessors if needed.(¹ÿ†ðÿÿÿÿÿ
+l
+java:S1104¹"PMake next a static final constant or non-public and provide accessors if needed.(±±èÃøÿÿÿÿ
+t	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(ƒ¦Úçÿÿÿÿÿ

@@ -1,0 +1,15 @@
+
+s	java:S135S"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ
+s	java:S135|"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ
+t	java:S135›"YReduce the total number of break and continue statements in this loop to use at most one.(˜ïˆÿÿÿÿÿ
+e
+java:S1104¶"NMake no a static final constant or non-public and provide accessors if needed.(Ë¥ÏÄ
+g
+java:S1104·"PMake name a static final constant or non-public and provide accessors if needed.( şÍ¾
+j
+java:S1104¸"TMake nickname a static final constant or non-public and provide accessors if needed.(ÔÀª\
+f
+java:S1104¹"PMake next a static final constant or non-public and provide accessors if needed.(¯şèG
+k
+java:S1104º"OMake pre a static final constant or non-public and provide accessors if needed.(ŒŸõûÿÿÿÿ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(®ÅÑú

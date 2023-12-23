@@ -1,0 +1,10 @@
+
+[	java:S112E"FDefine and throw a dedicated exception instead of using a generic one.(ƒí±
+[	java:S112O"FDefine and throw a dedicated exception instead of using a generic one.(ƒí±
+l
+java:S1192E"VDefine a constant instead of duplicating this literal "æ ˆç©ºï¼Œæ²¡æœ‰æ•°æ®" 3 times.(ƒí±
+k
+java:S1104l"PMake next a static final constant or non-public and provide accessors if needed.(±±èÃøÿÿÿÿ
+l
+java:S1104m"QMake value a static final constant or non-public and provide accessors if needed.(‚¯¥ùÿÿÿÿ
+a	java:S128)"LEnd this switch case with an unconditional break, return or throw statement.(şû·

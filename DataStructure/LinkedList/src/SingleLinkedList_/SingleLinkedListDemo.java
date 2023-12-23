@@ -50,20 +50,13 @@ public class SingleLinkedListDemo {
 //        System.out.println(lastNode);
 //        System.out.println();
 
-        // 单链表的反转
-//        System.out.println("反转前：");
-//        singleLinkedList.list();
-//        System.out.println("反转后: ");
-//        reverseList(singleLinkedList.getHead());
-//        singleLinkedList.list();
-
 
         // 逆序打印单链表
         reversePrint(singleLinkedList.getHead());
     }
 
     /**
-     * 单链表逆向打印
+     * 正向单链表逆向打印
      * 使用栈这种数据结构来实现，先进后出，从后向前打印
      * */
     public static void reversePrint(HeroNode head) {
@@ -88,31 +81,6 @@ public class SingleLinkedListDemo {
         }
     }
 
-    /**
-     * 单链表的反转
-     * */
-    public static void reverseList(HeroNode head) {
-        // 判断链表是否为空，或链表只有一个节点，直接返回
-        if (head.next == null || head.next.next == null) {
-            return;
-        }
-
-        // 遍历原来的链表
-        HeroNode temp = head.next;
-        HeroNode next = null; // 指向当前节点[temp]的下一个节点
-        HeroNode reverseHead = new HeroNode(0, "", ""); // 反转后的链表的头节点
-
-        // 遍历原来的链表，每遍历一个节点，就将其去除，并放在新的链表reverseHead的最前端
-        while (temp != null) {
-            next = temp.next; // 保存当前节点的下一个节点，后面需要使用
-            temp.next = reverseHead.next; // 将当前节点的下一个节点指向新的链表的最前端
-            reverseHead.next = temp; // 将新的链表的最前端指向当前节点
-            temp = next; // 将temp指向下一个节点
-        }
-
-        // 将head.next指向reverseHead.next，实现单链表的反转
-        head.next = reverseHead.next;
-    }
 
     /**
      * 查找单链表中的倒数第k个节点
@@ -144,7 +112,6 @@ public class SingleLinkedListDemo {
 
         return temp;
     }
-
 
 
     // 方法: 获取单链表的节点的个数
@@ -200,8 +167,6 @@ class SingleLinkedList {
      * 第二种方式 在添加英雄时，根据no的值将英雄插入到有序的位置
      * */
     public void addByOrder(HeroNode heroNode) {
-
-        // 通过一个辅助指针来帮助找到添加的位置
         // 因为单链表，我们找的temp是位于添加位置的前一个节点，无法从后一个节点访问前一个节点
         HeroNode temp = head;
         // 标识添加的编号是否存在，默认为false
@@ -247,7 +212,7 @@ class SingleLinkedList {
         }
 
         // 找到需要修改的节点，根据no编号
-        // 定义一个辅助变量
+        // 用一个实际的节点
         HeroNode temp = head.next;
         boolean flag = false; // 表示是否找到该节点
 
@@ -307,6 +272,7 @@ class SingleLinkedList {
             System.out.println("链表为空");
             return;
         }
+        // 使用实际的节点
         HeroNode temp = head.next;
         while (true) {
             if (temp == null) {

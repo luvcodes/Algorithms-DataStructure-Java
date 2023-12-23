@@ -1,0 +1,19 @@
+
+t
+java:S2293E"YReplace the type specification in this constructor call with the diamond operator ("<>").(Û≠Ω€¸ˇˇˇˇ
+t	java:S135Ø"YReduce the total number of break and continue statements in this loop to use at most one.(òÔàûˇˇˇˇˇ
+t	java:S135€"YReduce the total number of break and continue statements in this loop to use at most one.(òÔàûˇˇˇˇˇ
+t	java:S135˜"YReduce the total number of break and continue statements in this loop to use at most one.(òÔàûˇˇˇˇˇ
+e
+java:S1104§"NMake no a static final constant or non-public and provide accessors if needed.(À•œƒ
+g
+java:S1104•"PMake name a static final constant or non-public and provide accessors if needed.(†˛Õæ
+j
+java:S1104¶"TMake nickname a static final constant or non-public and provide accessors if needed.(‘¿™\
+l
+java:S1104ß"PMake next a static final constant or non-public and provide accessors if needed.(ÕØéÚ¯ˇˇˇˇ
+o	java:S120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(›⁄˙Ã
+k
+java:S1149E"PReplace the synchronized class "Stack" by an unsynchronized one such as "Deque".(Û≠Ω€¸ˇˇˇˇ
+T
+java:S1155O">Use isEmpty() to check whether the collection is empty or not.(‰€üñ
