@@ -7,10 +7,12 @@ public class InsertSort {
     }
 
     public static void insertSort(int[] arr){
+        int insertVal = 0;
+        int insertIndex = 0;
         // 使用for循环来把代码简化
         for (int i = 1; i < arr.length; i++) {
-            int insertVal = arr[i]; // 定义待插入的数
-            int insertIndex = i - 1; // 即arr[1]的前面这个数的下标
+            insertVal = arr[i]; // 定义待插入的数
+            insertIndex = i - 1; // 即arr[1]的前面这个数的下标
 
             // 给insertVal找到插入的位置
             // insertIndex >= 0保证找插入位置过程中不越界
