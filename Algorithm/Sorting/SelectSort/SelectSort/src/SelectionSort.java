@@ -1,10 +1,12 @@
+import java.util.Arrays;
+
 public class SelectionSort {
     public static void main(String[] args) {
         int[] arr = {101, 34, 119, 1};
         selectSort(arr);
     }
 
-    //\
+    //
     public static void selectSort(int[] arr) {
         // 使用循环来解决
         for (int i = 0; i < arr.length - 1; i++) {
@@ -31,5 +33,6 @@ public class SelectionSort {
                 arr[i] = min;
             }
         }
+        System.out.println(Arrays.toString(arr));
     }
 }
