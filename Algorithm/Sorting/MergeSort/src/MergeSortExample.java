@@ -5,28 +5,33 @@ public class MergeSortExample {
         System.out.println("原始数组:");
         printArray(array);
 
-        mergeSort(array);
+        mergeSortArray(array); // 数组排序
 
         System.out.println("\n排序后的数组:");
         printArray(array);
     }
 
-    private static void mergeSort(int[] arr) {
+    // 主要的归并排序函数
+    private static void mergeSortArray(int[] arr) {
         if (arr.length <= 1) {
             return;
         }
-        mergeSort(arr, 0, arr.length - 1);
+        mergeSortRecursive(arr, 0, arr.length - 1);
     }
 
-    private static void mergeSort(int[] arr, int left, int right) {
+    // 用于递归的归并排序函数
+    private static void mergeSortRecursive(int[] arr, int left, int right) {
         if (left < right) {
+            // 计算的中点是相对于由 left 到 right 索引定义的数组段的中点，而不一定是整个数组的中点
+            // 因为 left 可能不是从数组的第一个元素（索引为 0）开始的。
             int mid = left + (right - left) / 2;
-            mergeSort(arr, left, mid);
-            mergeSort(arr, mid + 1, right);
+            mergeSortRecursive(arr, left, mid);
+            mergeSortRecursive(arr, mid + 1, right);
             merge(arr, left, mid, right);
         }
     }
 
+    // 合并两个子数组的函数
     private static void merge(int[] arr, int left, int mid, int right) {
         int[] temp = new int[right - left + 1];
         int i = left, j = mid + 1, k = 0;
@@ -50,6 +55,7 @@ public class MergeSortExample {
         System.arraycopy(temp, 0, arr, left, temp.length);
     }
 
+    // 打印数组的辅助函数
     private static void printArray(int[] arr) {
         for (int value : arr) {
             System.out.print(value + " ");
