@@ -23,17 +23,19 @@ public class RadixSort {
         int[] bucketElementCounts = new int[10];
 
         for (int i = 0, n = 1; i < maxLength; i++, n*=10) {
-            // 针对每个元素的对应位进行排序，第一次是个位，第二次是十位，第三次是百位
+            // 针对每个元素的对应位进行排序，填到桶里去。第一次是个位，第二次是十位，第三次是百位
             for (int j = 0; j < arr.length; j++) {
-                // 去除每个元素的对应位的值
+                // 元素的对应的桶的索引的值
                 int digitOfElement = arr[j] / n % 10;
                 // 放入到对应的桶中
+                // digitOfElement 的值意味着它决定了当前元素应该放入哪个桶中，对应桶的索引。
+                // bucketElementCounts[digitOfElement]用于跟踪每个桶当前已经存储的对应元素
                 bucket[digitOfElement][bucketElementCounts[digitOfElement]] = arr[j];
                 bucketElementCounts[digitOfElement]++;
             }
 
-            // 按照规则，将桶中的数据，放入到原数组
-            int index = 0;
+
+            int index = 0; // 为了遍历原始数组填充用的索引
             // 遍历每一个桶，并将桶中的数据，放入到原数组
             for (int k = 0; k < bucketElementCounts.length; k++) {
                 // 如果桶中有数据，才放入到原数组
