@@ -14,15 +14,42 @@ public class Main {
         node3.setRight(node4);
         node3.setLeft(node5);
 
-        // 测试
-        System.out.println("前序遍历");
-        binaryTree.preOrder();
+//        // 测试
+//        System.out.println("前序遍历");
+//        binaryTree.preOrder();
+//
+//        System.out.println("中序遍历");
+//        binaryTree.infixOrder();
+//
+//        System.out.println("后序遍历");
+//        binaryTree.postOrder();
 
-        System.out.println("中序遍历");
-        binaryTree.infixOrder();
 
-        System.out.println("后序遍历");
-        binaryTree.postOrder();
+        // 查找
+        // 前序查找 4次
+//        HeroNode resNode = binaryTree.preOrderSearch(5);
+//        if (resNode != null) {
+//            System.out.println("找到了，no=" + resNode.getNo() + " name=" + resNode.getName());
+//        } else {
+//            System.out.println("没有找到");
+//        }
+
+        // 中序查找 3次
+//        HeroNode resNode2 = binaryTree.infixOrderSearch(5);
+//        if (resNode2 != null) {
+//            System.out.println("找到了，no=" + resNode2.getNo() + " name=" + resNode2.getName());
+//        } else {
+//            System.out.println("没有找到");
+//        }
+
+
+        // 后序查找 2次
+        HeroNode resNode3 = binaryTree.postOrderSearch(5);
+        if (resNode3 != null) {
+            System.out.println("找到了，no=" + resNode3.getNo() + " name=" + resNode3.getName());
+        } else {
+            System.out.println("没有找到");
+        }
     }
 }
 
@@ -182,6 +209,7 @@ class HeroNode {
 
     // 前序遍历查找
     public HeroNode preOrderSearch(int no) {
+        System.out.println("前序遍历查找");
         // 比较当前节点是不是目标节点
         if (this.no == no) {
             return this;
@@ -212,6 +240,9 @@ class HeroNode {
         if (resNode != null) {
             return resNode;
         }
+
+        System.out.println("中序遍历查找");
+
         // 如果找到则返回，如果没有找到，就和当前节点比较
         if (this.no == no) {
             return this;
@@ -226,6 +257,7 @@ class HeroNode {
 
     // 后序遍历查找
     public HeroNode postOrderSearch(int no) {
+
         // 判断当前节点的左子节点是否为空，如果不为空，则递归后序查找
         HeroNode resNode = null;
         if (this.left != null) {
@@ -241,6 +273,9 @@ class HeroNode {
         if (resNode != null) {
             return resNode;
         }
+
+        System.out.println("后序遍历查找");
+
         // 最后判断当前节点是否为目标节点，如果是，则返回当前节点，否则返回null。
         if (this.no == no) {
             return this;
