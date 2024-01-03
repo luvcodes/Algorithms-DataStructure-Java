@@ -1,4 +1,4 @@
-public class Main {
+public class BinaryTreeDemo {
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
         HeroNode root = new HeroNode(1, "宋江");
