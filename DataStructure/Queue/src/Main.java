@@ -54,7 +54,8 @@ public class Main {
 
 // 使用数组模拟队列，编写一个ArrayQueue的类
 class ArrayQueue {
-    private int maxSize; // 表示数组的最大容量
+    // 表示数组的最大容量
+    private int maxSize;
     private int front; // 队列头
     private int rear; // 队列尾
     private int[] arr; // 该数组用于存放数据，模拟队列
@@ -115,6 +116,7 @@ class ArrayQueue {
         if (isEmpty()) {
             throw new RuntimeException("队列空的，没有数据~~");
         }
-        return arr[front + 1]; // front + 1 表示头数据的下标
+        // front + 1 表示头数据的下标
+        return arr[front + 1];
     }
 }

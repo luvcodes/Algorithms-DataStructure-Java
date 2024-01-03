@@ -80,7 +80,8 @@ class CircleArray {
             return;
         }
         arr[rear] = n;
-        rear = (rear + 1) % maxSize; // 让rear后移, 取模才能到前面队列开头的空位
+        // 让rear后移, 取模才能到前面队列开头的空位
+        rear = (rear + 1) % maxSize;
     }
 
     public int getQueue() {
@@ -88,8 +89,10 @@ class CircleArray {
             throw new RuntimeException("队列空，不能取数据");
         }
         int value = arr[front];
-        front = (front + 1) % maxSize; // 取模是因为要考虑不能越界，不取模它就会一直往后加1
-        return value;  // 返回队列的第一个元素，并且删除元素。
+        // 取模是因为要考虑不能越界，不取模它就会一直往后加1
+        front = (front + 1) % maxSize;
+        // 返回队列的第一个元素，并且删除元素。
+        return value;
     }
 
     // 求出当前队列有效数据的个数
@@ -112,7 +115,8 @@ class CircleArray {
         if (isEmpty()) {
             throw new RuntimeException("队列空的，没有数据~~");
         }
-        return arr[front]; // front表示头数据的下标
+        // front表示头数据的下标
+        return arr[front];
     }
 
     public int Rear() {
