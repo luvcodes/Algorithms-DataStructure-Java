@@ -1,5 +1,8 @@
 package threadedBinaryTree;
 
+/**
+ * @author ryanw
+ */
 public class ThreadedBT {
     public static void main(String[] args) {
         HeroNode root = new HeroNode(1, "tom");
@@ -26,6 +29,10 @@ public class ThreadedBT {
         HeroNode node5Right = heroNode5.getRight();
         System.out.println("10号节点的前驱节点是 = " + node5Left);
         System.out.println("10号节点的后继节点是 = " + node5Right);
+
+        // 使用线索化的方式遍历线索化二叉树
+        System.out.println("使用线索化的方式遍历线索化二叉树");
+        tree.threadedList();
     }
 }
 
@@ -41,6 +48,29 @@ class ThreadBinaryTree {
     public void setRoot(HeroNode root) {
         this.root = root;
     }
+
+
+    // 遍历线索化二叉树的方法
+    public void threadedList() {
+        // 定义一个变量，存储当前遍历的节点，从root开始
+        HeroNode node = root;
+        while (node != null) {
+            while (node.getLeftType() == 0) {
+                node = node.getLeft();
+            }
+
+            System.out.println(node);
+            // 如果当前节点的右节点指向的是后继节点，就一直输出
+            while (node.getRightType() == 1) {
+                // 获取当前节点的后继节点
+                node = node.getRight();
+                System.out.println(node);
+            }
+            // 替换这个遍历的节点
+            node = node.getRight();
+        }
+    }
+
 
     // 重载一把threadedNodes方法
     public void threadedNodes() {
