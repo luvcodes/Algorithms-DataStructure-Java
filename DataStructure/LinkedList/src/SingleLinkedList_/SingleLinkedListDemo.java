@@ -181,7 +181,9 @@ class SingleLinkedList {
             if (temp.next.no > heroNode.no) {
                 // 执行 break 跳出循环，因为找到了插入的正确位置。
                 break;
-            } else if (temp.next.no == heroNode.no) { // 说明希望添加的heroNode的编号已经存在
+            }
+            // 说明希望添加的heroNode的编号已经存在
+            else if (temp.next.no == heroNode.no) {
                 // 修改flag成为true
                 flag = true;
                 break;

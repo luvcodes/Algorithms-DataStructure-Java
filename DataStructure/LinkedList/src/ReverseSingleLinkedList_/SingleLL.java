@@ -15,14 +15,6 @@ public class SingleLL {
         linkedList.list();
         System.out.println();
 
-//        linkedList.deleteNode(2);
-//        linkedList.list();
-//        System.out.println();
-
-//        Node updateNode = new Node(2, "G", "H");
-//        linkedList.updateNode(updateNode);
-//        linkedList.list();
-
         reverse(linkedList.getHead());
         linkedList.list();
     }
@@ -37,7 +29,9 @@ public class SingleLL {
             return;
         }
 
+        // 帮助定义原来的链表
         Node temp = head.next;
+        // 指向当前节点的下一个节点，也就是temp的下一个节点
         Node next = null;
         Node reverseHead = new Node(0, "", "");
 
@@ -171,11 +165,7 @@ class SingleLinkedList {
             temp = temp.next;
         }
     }
-
-
 }
-
-
 
 
 class Node {
