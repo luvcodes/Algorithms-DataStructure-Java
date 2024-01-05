@@ -1,6 +1,6 @@
 package ReverseSingleLinkedList_;
 
-public class SingleLL {
+public class ReverseSSL_ {
     public static void main(String[] args) {
         Node node1 = new Node(1, "A", "B");
         Node node2 = new Node(2, "C", "D");
