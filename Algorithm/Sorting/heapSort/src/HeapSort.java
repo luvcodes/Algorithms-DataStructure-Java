@@ -1,12 +1,44 @@
+import java.util.Arrays;
+
+/**
+ * @author ryanw
+ */
 public class HeapSort {
     public static void main(String[] args) {
         int[] arr = {4,6,8,5,9};
 
-
+        heapSort(arr);
     }
 
     public static void heapSort(int[] arr){
         System.out.println("堆排序");
+        int temp = 0;
+
+        // 完成最终代码
+        // 将无序序列构建成一个，根据升序需求选择大顶堆或者小顶堆
+        for (int i = arr.length/2 - 1; i >= 0; i--) {
+            adjustHeap(arr, i, arr.length);
+        }
+
+        // 将堆顶元素与末尾元素交换，将最大元素“沉”到数组末端
+        // 重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整 + 交换步骤，直到整个序列有序
+        for (int j = arr.length - 1; j > 0; j--) {
+            // 交换
+            temp = arr[j];
+            arr[j] = arr[0];
+            arr[0] = temp;
+            adjustHeap(arr, 0, j);
+        }
+
+        System.out.println("数组 = " + Arrays.toString(arr));
+
+
+        // 分步完成
+//        adjustHeap(arr, 1, arr.length);
+//        System.out.println("第一次调整 " + Arrays.toString(arr));
+//
+//        adjustHeap(arr, 0, arr.length);
+//        System.out.println("第二次调整 " + Arrays.toString(arr));
     }
 
     /**
