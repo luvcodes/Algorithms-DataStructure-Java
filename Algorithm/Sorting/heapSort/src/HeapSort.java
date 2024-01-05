@@ -1,104 +1,41 @@
-/**
- * @author ryanw
- */
 public class HeapSort {
-    public void sort(int[] arr) {
-        int n = arr.length;
-
-        // 构建最大堆
-        for (int i = n / 2 - 1; i >= 0; i--) {
-            heapify(arr, n, i);
-        }
-
-        // 一个个从堆顶取出元素
-        for (int i = n - 1; i > 0; i--) {
-            // 将当前堆顶元素与末尾元素交换，确保末尾元素最大
-            int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
-
-            // 调整剩余数组，使其满足最大堆的性质
-            heapify(arr, i, 0);
-        }
-    }
-
-    // 将以非叶子节点为根的子树调整为最大堆
-    void heapify(int[] arr, int n, int i) {
-        // 初始化最大值为根
-        int largest = i;
-        // 左子节点
-        int l = 2 * i + 1;
-        // 右子节点
-        int r = 2 * i + 2;
-
-        // 如果左子节点大于根
-        if (l < n && arr[l] > arr[largest]) {
-            largest = l;
-        }
-
-        // 如果右子节点大于当前最大值
-        if (r < n && arr[r] > arr[largest]) {
-            largest = r;
-        }
-
-        // 如果最大值不是根
-        if (largest != i) {
-            int swap = arr[i];
-            arr[i] = arr[largest];
-            arr[largest] = swap;
-
-            // 递归地调整受影响的子树
-            heapify(arr, n, largest);
-        }
-    }
-
-    // 将以非叶子节点为根的子树调整为最小堆
-    void heapify2(int[] arr, int n, int i) {
-        // 初始化最小值为根
-        int smallest = i;
-        // 左子节点
-        int l = 2 * i + 1;
-        // 右子节点
-        int r = 2 * i + 2;
-
-        // 如果左子节点小于根
-        if (l < n && arr[l] < arr[smallest]) {
-            smallest = l;
-        }
-
-        // 如果右子节点小于当前最小值
-        if (r < n && arr[r] < arr[smallest]) {
-            smallest = r;
-        }
-
-        // 如果最小值不是根
-        if (smallest != i) {
-            int swap = arr[i];
-            arr[i] = arr[smallest];
-            arr[smallest] = swap;
-
-            // 递归地调整受影响的子树
-            heapify(arr, n, smallest);
-        }
-    }
-
-
-    // 打印数组的方法
-    static void printArray(int[] arr) {
-        int n = arr.length;
-        for (int i = 0; i < n; ++i) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-    }
-
-    // 测试方法
     public static void main(String[] args) {
-        int[] arr = {5, 3, 8, 4, 2};
-        HeapSort heapSort = new HeapSort();
-        heapSort.sort(arr);
+        int[] arr = {4,6,8,5,9};
 
-        System.out.print("Sorted array is: ");
-        printArray(arr);
+
+    }
+
+    public static void heapSort(int[] arr){
+        System.out.println("堆排序");
+    }
+
+    /**
+     * 将一个数组调整成一个大顶堆
+     * 功能: 完成将以i对应的非叶子节点的树调整成大顶堆
+     * */
+    public static void adjustHeap(int[] arr, int i, int length) {
+        // 先取出当前元素的值，保存在临时变量
+        int temp = arr[i];
+        // 从i结点的左子结点开始，也就是2i+1处开始
+        for (int k = i * 2 + 1; k < length; k = k * 2 + 1) {
+            // 如果左子结点小于右子结点，k指向右子结点
+            if (k + 1 < length && arr[k] < arr[k + 1]) {
+                // k指向右子结点
+                k++;
+            }
+            // 如果子节点大于父节点
+            if (arr[k] > temp) {
+                // 将子节点值赋给父节点
+                arr[i] = arr[k];
+                // 将i指向子节点
+                i = k;
+            } else {
+                break;
+            }
+        }
+
+        // 当for循环结束后，已经将以i为父节点的树的最大值，放在了最顶
+        // 将temp值放到调整后的位置
+        arr[i] = temp;
     }
 }
