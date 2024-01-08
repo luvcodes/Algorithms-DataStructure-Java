@@ -19,6 +19,10 @@ public class HuffmanCode {
         // 测试是否生成了对应的赫夫曼编码
         Map<Byte, String> huffmanCodes = getCodes(huffmanTreeRoot);
         System.out.println("生成的赫夫曼编码表: " + huffmanCodes);
+
+
+        byte[] huffmanCodeBytes = zip(contentBytes, huffmanCodes);
+        System.out.println("压缩后的字节长度: " + Arrays.toString(huffmanCodeBytes));
     }
 
     /**
@@ -126,5 +130,51 @@ public class HuffmanCode {
         getCodes(root.right, "1", stringBuilder);
         // 返回赫夫曼编码表
         return huffmanCodes;
+    }
+
+
+    // 将字符串对应的byte数组，通过生成的赫夫曼编码表，返回一个赫夫曼编码压缩后的byte数组
+    /**
+     * @param bytes 原始的字符串对应的byte[]，就是contentBytes包含原始的字符串
+     * @param huffmanCodes 生成的赫夫曼编码map
+     * @return 返回压缩后的byte数组
+     * */
+    public static byte[] zip(byte[] bytes, Map<Byte, String> huffmanCodes) {
+        // 1. 利用赫夫曼编码表huffmanCodes将bytes转成赫夫曼编码的字符串 (二进制的那一串)
+        StringBuilder stringBuilder = new StringBuilder();
+        // 遍历bytes
+        for (byte b : bytes) {
+            stringBuilder.append(huffmanCodes.get(b));
+        }
+        // 这里已经得到了长串字符串
+        // System.out.println("压缩后的字符串: " + stringBuilder.toString());
+
+        // 2. 将stringBuilder变成一个byte数组
+        int len;
+        // 二进制8位数字，代表一个字节
+        if (stringBuilder.length() % 8 == 0) {
+            len = stringBuilder.length() / 8;
+        } else {
+            len = stringBuilder.length() / 8 + 1;
+        }
+        // 创建存储压缩后的byte数组
+        byte[] huffmanBytes = new byte[len];
+        // 记录是第几个byte
+        int index = 0;
+        for (int i = 0; i < stringBuilder.length(); i += 8) { // 因为是每8位对应一个byte，步长是+8
+            String strByte;
+            strByte = stringBuilder.substring(i, i + 8);
+            if (i + 8 > stringBuilder.length()) { // 不够8位
+                // 说明是最后一个字节
+                strByte = stringBuilder.substring(i);
+            } else {
+                // 将strByte转成一个byte，放入到huffmanBytes
+                huffmanBytes[index] = (byte) Integer.parseInt(strByte, 2);
+                index++;
+            }
+        }
+
+        // 返回压缩后的byte数组
+        return huffmanBytes;
     }
 }
