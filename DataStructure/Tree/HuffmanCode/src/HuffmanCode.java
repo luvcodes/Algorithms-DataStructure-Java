@@ -1,4 +1,7 @@
-import java.io.UnsupportedEncodingException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.*;
 
 /**
@@ -6,15 +9,42 @@ import java.util.*;
  */
 public class HuffmanCode {
     public static void main(String[] args) throws UnsupportedEncodingException {
-        String content = "i like like like java do you like a java";
-        byte[] contentBytes = content.getBytes();
-        System.out.println(contentBytes.length);
+//        String content = "i like like like java do you like a java";
+//        byte[] contentBytes = content.getBytes();
+//        System.out.println(contentBytes.length);
+//
+//        HuffmanZipResult zipResult = huffmanZip(contentBytes);
+//        System.out.println("压缩后的结果是: " + Arrays.toString(zipResult.zipBytes));
+//
+//        byte[] sourceBytes = decode(huffmanCodes, zipResult);
+//        System.out.println("原来的字符串 = " + new String(sourceBytes));
 
-        HuffmanZipResult zipResult = huffmanZip(contentBytes);
-        System.out.println("压缩后的结果是: " + Arrays.toString(zipResult.zipBytes));
 
-        byte[] sourceBytes = decode(huffmanCodes, zipResult);
-        System.out.println("原来的字符串 = " + new String(sourceBytes));
+        // 验证文件压缩、解压缩
+        try {
+            // 确保该文件存在
+            String originalFilePath = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\input.txt";
+            String compressedFilePath = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\compressedFile.zip";
+            String decompressedFilePath = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\decompressedFile.txt";
+
+
+            compressFile(originalFilePath, compressedFilePath);
+            System.out.println("文件压缩完成");
+
+            decompressFile(compressedFilePath, decompressedFilePath);
+            System.out.println("文件解压缩完成");
+
+            byte[] originalContent = Files.readAllBytes(Paths.get(originalFilePath));
+            byte[] decompressedContent = Files.readAllBytes(Paths.get(decompressedFilePath));
+            if (Arrays.equals(originalContent, decompressedContent)) {
+                System.out.println("验证成功：原始文件和解压缩后的文件内容相同");
+            } else {
+                System.out.println("验证失败：原始文件和解压缩后的文件内容不同");
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
     static class Node implements Comparable<Node> {
@@ -197,4 +227,37 @@ public class HuffmanCode {
         }
         return bytes;
     }
+
+
+    // 压缩文件方法
+    public static void compressFile(String inputFilePath, String outputFilePath) throws IOException {
+        byte[] fileContent = Files.readAllBytes(Paths.get(inputFilePath));
+        HuffmanZipResult zipResult = huffmanZip(fileContent);
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFilePath))) {
+            oos.writeObject(zipResult.zipBytes); // 压缩后的数据
+            oos.writeObject(huffmanCodes);       // 编码表
+            oos.writeInt(zipResult.originalBinaryStringLength); // 原始二进制串长度
+        }
+    }
+
+
+    // 解压文件方法
+    public static void decompressFile(String inputFilePath, String outputFilePath) throws IOException, ClassNotFoundException {
+        byte[] compressedData;
+        Map<Byte, String> huffmanCodes;
+        int originalBinaryStringLength;
+
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(inputFilePath))) {
+            compressedData = (byte[]) ois.readObject();
+            huffmanCodes = (Map<Byte, String>) ois.readObject();
+            originalBinaryStringLength = ois.readInt();
+        }
+
+        HuffmanZipResult zipResult = new HuffmanZipResult(compressedData, originalBinaryStringLength);
+        byte[] decompressedData = decode(huffmanCodes, zipResult);
+        Files.write(Paths.get(outputFilePath), decompressedData);
+    }
+
+
+
 }
