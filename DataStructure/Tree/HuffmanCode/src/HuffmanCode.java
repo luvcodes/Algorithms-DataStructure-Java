@@ -7,257 +7,463 @@ import java.util.*;
 /**
  * @author ryanw
  */
+
 public class HuffmanCode {
-    public static void main(String[] args) throws UnsupportedEncodingException {
-//        String content = "i like like like java do you like a java";
-//        byte[] contentBytes = content.getBytes();
-//        System.out.println(contentBytes.length);
+
+    public static void main(String[] args) {
+
+        //²âÊÔÑ¹ËõÎÄ¼ş
+//		String srcFile = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\input.txt";
+//		String dstFile = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\input.zip";
 //
-//        HuffmanZipResult zipResult = huffmanZip(contentBytes);
-//        System.out.println("å‹ç¼©åçš„ç»“æœæ˜¯: " + Arrays.toString(zipResult.zipBytes));
-//
-//        byte[] sourceBytes = decode(huffmanCodes, zipResult);
-//        System.out.println("åŸæ¥çš„å­—ç¬¦ä¸² = " + new String(sourceBytes));
+//		zipFile(srcFile, dstFile);
+//		System.out.println("Ñ¹ËõÎÄ¼şok~~");
 
 
-        // éªŒè¯æ–‡ä»¶å‹ç¼©ã€è§£å‹ç¼©
+        //²âÊÔ½âÑ¹ÎÄ¼ş
+        String zipFile = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\input.zip";
+        String dstFile = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\input2.txt";
+        unZipFile(zipFile, dstFile);
+        System.out.println("½âÑ¹³É¹¦!");
+
+
+		String content = "i like like java do you like java";
+		byte[] contentBytes = content.getBytes();
+		System.out.println(contentBytes.length); //40
+
+		byte[] huffmanCodesBytes= huffmanZip(contentBytes);
+		System.out.println("Ñ¹ËõºóµÄ½á¹ûÊÇ:" + Arrays.toString(huffmanCodesBytes) + " ³¤¶È= " + huffmanCodesBytes.length);
+
+
+		//²âÊÔÒ»°ÑbyteToBitString·½·¨
+		//System.out.println(byteToBitString((byte)1));
+		byte[] sourceBytes = decode(huffmanCodes, huffmanCodesBytes);
+
+        // "i like like like java do you like a java"
+		System.out.println("Ô­À´µÄ×Ö·û´®=" + new String(sourceBytes));
+
+
+
+
+        //ÈçºÎ½« Êı¾İ½øĞĞ½âÑ¹(½âÂë)
+        //·Ö²½¹ı³Ì
+		/*
+		List<Node> nodes = getNodes(contentBytes);
+		System.out.println("nodes=" + nodes);
+
+		//²âÊÔÒ»°Ñ£¬´´½¨µÄºÕ·òÂüÊ÷
+		System.out.println("ºÕ·òÂüÊ÷");
+		Node huffmanTreeRoot = createHuffmanTree(nodes);
+		System.out.println("Ç°Ğò±éÀú");
+		huffmanTreeRoot.preOrder();
+
+		//²âÊÔÒ»°ÑÊÇ·ñÉú³ÉÁË¶ÔÓ¦µÄºÕ·òÂü±àÂë
+		Map<Byte, String> huffmanCodes = getCodes(huffmanTreeRoot);
+		System.out.println("~Éú³ÉµÄºÕ·òÂü±àÂë±í= " + huffmanCodes);
+
+		//²âÊÔ
+		byte[] huffmanCodeBytes = zip(contentBytes, huffmanCodes);
+		System.out.println("huffmanCodeBytes=" + Arrays.toString(huffmanCodeBytes));//17
+
+		//·¢ËÍhuffmanCodeBytes Êı×é */
+
+
+    }
+
+    //±àĞ´Ò»¸ö·½·¨£¬Íê³É¶ÔÑ¹ËõÎÄ¼şµÄ½âÑ¹
+    /**
+     *
+     * @param zipFile ×¼±¸½âÑ¹µÄÎÄ¼ş
+     * @param dstFile ½«ÎÄ¼ş½âÑ¹µ½ÄÄ¸öÂ·¾¶
+     */
+    public static void unZipFile(String zipFile, String dstFile) {
+
+        //¶¨ÒåÎÄ¼şÊäÈëÁ÷
+        InputStream is = null;
+        //¶¨ÒåÒ»¸ö¶ÔÏóÊäÈëÁ÷
+        ObjectInputStream ois = null;
+        //¶¨ÒåÎÄ¼şµÄÊä³öÁ÷
+        OutputStream os = null;
         try {
-            // ç¡®ä¿è¯¥æ–‡ä»¶å­˜åœ¨
-            String originalFilePath = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\input.txt";
-            String compressedFilePath = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\compressedFile.zip";
-            String decompressedFilePath = "C:\\Users\\ryanw\\IdeaProjects\\Algorithms-DataStructure-Java\\DataStructure\\Tree\\HuffmanCode\\src\\decompressedFile.txt";
+            //´´½¨ÎÄ¼şÊäÈëÁ÷
+            is = new FileInputStream(zipFile);
+            //´´½¨Ò»¸öºÍ  is¹ØÁªµÄ¶ÔÏóÊäÈëÁ÷
+            ois = new ObjectInputStream(is);
+            //¶ÁÈ¡byteÊı×é  huffmanBytes
+            byte[] huffmanBytes = (byte[])ois.readObject();
+            //¶ÁÈ¡ºÕ·òÂü±àÂë±í
+            Map<Byte,String> huffmanCodes = (Map<Byte,String>)ois.readObject();
 
-
-            compressFile(originalFilePath, compressedFilePath);
-            System.out.println("æ–‡ä»¶å‹ç¼©å®Œæˆ");
-
-            decompressFile(compressedFilePath, decompressedFilePath);
-            System.out.println("æ–‡ä»¶è§£å‹ç¼©å®Œæˆ");
-
-            byte[] originalContent = Files.readAllBytes(Paths.get(originalFilePath));
-            byte[] decompressedContent = Files.readAllBytes(Paths.get(decompressedFilePath));
-            if (Arrays.equals(originalContent, decompressedContent)) {
-                System.out.println("éªŒè¯æˆåŠŸï¼šåŸå§‹æ–‡ä»¶å’Œè§£å‹ç¼©åçš„æ–‡ä»¶å†…å®¹ç›¸åŒ");
-            } else {
-                System.out.println("éªŒè¯å¤±è´¥ï¼šåŸå§‹æ–‡ä»¶å’Œè§£å‹ç¼©åçš„æ–‡ä»¶å†…å®¹ä¸åŒ");
+            //½âÂë
+            byte[] bytes = decode(huffmanCodes, huffmanBytes);
+            //½«bytes Êı×éĞ´Èëµ½Ä¿±êÎÄ¼ş
+            os = new FileOutputStream(dstFile);
+            //Ğ´Êı¾İµ½ dstFile ÎÄ¼ş
+            os.write(bytes);
+        } catch (Exception e) {
+            // TODO: handle exception
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                assert os != null;
+                os.close();
+                ois.close();
+                is.close();
+            } catch (Exception e2) {
+                System.out.println(e2.getMessage());
             }
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
-    }
-
-    static class Node implements Comparable<Node> {
-        Byte data; // å­—ç¬¦æ•°æ®
-        int weight; // æƒå€¼ï¼ˆé¢‘ç‡ï¼‰
-        Node left;
-        Node right;
-
-        public Node(Byte data, int weight) {
-            this.data = data;
-            this.weight = weight;
-        }
-
-        @Override
-        public int compareTo(Node o) {
-            return this.weight - o.weight;
-        }
-
-        public void preOrder() {
-            System.out.println(this);
-            if (this.left != null) {
-                this.left.preOrder();
-            }
-            if (this.right != null) {
-                this.right.preOrder();
-            }
-        }
-
-        @Override
-        public String toString() {
-            return "Node{" + "data=" + data + ", weight=" + weight + '}';
         }
     }
 
-    static class HuffmanZipResult {
-        byte[] zipBytes;
-        int originalBinaryStringLength;
+    //±àĞ´·½·¨£¬½«Ò»¸öÎÄ¼ş½øĞĞÑ¹Ëõ
+    /**
+     *
+     * @param srcFile Äã´«ÈëµÄÏ£ÍûÑ¹ËõµÄÎÄ¼şµÄÈ«Â·¾¶
+     * @param dstFile ÎÒÃÇÑ¹Ëõºó½«Ñ¹ËõÎÄ¼ş·Åµ½ÄÄ¸öÄ¿Â¼
+     */
+    public static void zipFile(String srcFile, String dstFile) {
 
-        public HuffmanZipResult(byte[] zipBytes, int originalBinaryStringLength) {
-            this.zipBytes = zipBytes;
-            this.originalBinaryStringLength = originalBinaryStringLength;
-        }
-    }
+        //´´½¨Êä³öÁ÷
+        OutputStream os = null;
+        ObjectOutputStream oos = null;
+        //´´½¨ÎÄ¼şµÄÊäÈëÁ÷
+        FileInputStream is = null;
+        try {
+            //´´½¨ÎÄ¼şµÄÊäÈëÁ÷
+            is = new FileInputStream(srcFile);
+            //´´½¨Ò»¸öºÍÔ´ÎÄ¼ş´óĞ¡Ò»ÑùµÄbyte[]
+            byte[] b = new byte[is.available()];
+            //¶ÁÈ¡ÎÄ¼ş
+            is.read(b);
+            //Ö±½Ó¶ÔÔ´ÎÄ¼şÑ¹Ëõ
+            byte[] huffmanBytes = huffmanZip(b);
+            //´´½¨ÎÄ¼şµÄÊä³öÁ÷, ´æ·ÅÑ¹ËõÎÄ¼ş
+            os = new FileOutputStream(dstFile);
+            //´´½¨Ò»¸öºÍÎÄ¼şÊä³öÁ÷¹ØÁªµÄObjectOutputStream
+            oos = new ObjectOutputStream(os);
+            //°Ñ ºÕ·òÂü±àÂëºóµÄ×Ö½ÚÊı×éĞ´ÈëÑ¹ËõÎÄ¼ş
+            oos.writeObject(huffmanBytes);
+            //ÕâÀïÎÒÃÇÒÔ¶ÔÏóÁ÷µÄ·½Ê½Ğ´Èë ºÕ·òÂü±àÂë£¬ÊÇÎªÁËÒÔºóÎÒÃÇ»Ö¸´Ô´ÎÄ¼şÊ±Ê¹ÓÃ
+            //×¢ÒâÒ»¶¨Òª°ÑºÕ·òÂü±àÂë Ğ´ÈëÑ¹ËõÎÄ¼ş
+            oos.writeObject(huffmanCodes);
 
-    private static List<Node> getNodes(byte[] bytes) {
-        ArrayList<Node> nodes = new ArrayList<>();
-        Map<Byte, Integer> counts = new HashMap<>();
-        for (byte b : bytes) {
-            Integer count = counts.get(b);
-            if (count == null) {
-                counts.put(b, 1);
-            } else {
-                counts.put(b, count + 1);
+
+        }catch (Exception e) {
+            System.out.println(e.getMessage());
+        }finally {
+            try {
+                is.close();
+                oos.close();
+                os.close();
+            }catch (Exception e) {
+                System.out.println(e.getMessage());
             }
         }
-        for (Map.Entry<Byte, Integer> entry : counts.entrySet()) {
-            nodes.add(new Node(entry.getKey(), entry.getValue()));
-        }
-        return nodes;
+
     }
 
-    private static Node createHuffmanTree(List<Node> nodes) {
-        while (nodes.size() > 1) {
-            Collections.sort(nodes);
-            Node left = nodes.get(0);
-            Node right = nodes.get(1);
-            Node parent = new Node(null, left.weight + right.weight);
-            parent.left = left;
-            parent.right = right;
-            nodes.remove(left);
-            nodes.remove(right);
-            nodes.add(parent);
-        }
-        return nodes.get(0);
-    }
+    //Íê³ÉÊı¾İµÄ½âÑ¹
+    //Ë¼Â·
+    //1. ½«huffmanCodeBytes [-88, -65, -56, -65, -56, -65, -55, 77, -57, 6, -24, -14, -117, -4, -60, -90, 28]
+    //   ÖØĞ´ÏÈ×ª³É ºÕ·òÂü±àÂë¶ÔÓ¦µÄ¶ş½øÖÆµÄ×Ö·û´® "1010100010111..."
+    //2.  ºÕ·òÂü±àÂë¶ÔÓ¦µÄ¶ş½øÖÆµÄ×Ö·û´® "1010100010111..." =¡· ¶ÔÕÕ ºÕ·òÂü±àÂë  =¡· "i like like like java do you like a java"
 
-    static Map<Byte, String> huffmanCodes = new HashMap<>();
-    static StringBuilder stringBuilder = new StringBuilder();
 
-    private static void getCodes(Node node, String code, StringBuilder stringBuilder) {
-        StringBuilder stringBuilder2 = new StringBuilder(stringBuilder);
-        stringBuilder2.append(code);
-        if (node != null) {
-            if (node.data == null) {
-                getCodes(node.left, "0", stringBuilder2);
-                getCodes(node.right, "1", stringBuilder2);
-            } else {
-                huffmanCodes.put(node.data, stringBuilder2.toString());
-            }
-        }
-    }
+    //±àĞ´Ò»¸ö·½·¨£¬Íê³É¶ÔÑ¹ËõÊı¾İµÄ½âÂë
+    /**
+     *
+     * @param huffmanCodes ºÕ·òÂü±àÂë±í map
+     * @param huffmanBytes ºÕ·òÂü±àÂëµÃµ½µÄ×Ö½ÚÊı×é
+     * @return ¾ÍÊÇÔ­À´µÄ×Ö·û´®¶ÔÓ¦µÄÊı×é
+     */
+    private static byte[] decode(Map<Byte,String> huffmanCodes, byte[] huffmanBytes) {
 
-    private static Map<Byte, String> getCodes(Node root) {
-        if (root == null) {
-            return null;
-        }
-        getCodes(root.left, "0", stringBuilder);
-        getCodes(root.right, "1", stringBuilder);
-        return huffmanCodes;
-    }
-
-    public static HuffmanZipResult zip(byte[] bytes, Map<Byte, String> huffmanCodes) {
+        //1. ÏÈµÃµ½ huffmanBytes ¶ÔÓ¦µÄ ¶ş½øÖÆµÄ×Ö·û´® £¬ ĞÎÊ½ 1010100010111...
         StringBuilder stringBuilder = new StringBuilder();
-        for (byte b : bytes) {
-            stringBuilder.append(huffmanCodes.get(b));
+        //½«byteÊı×é×ª³É¶ş½øÖÆµÄ×Ö·û´®
+        for(int i = 0; i < huffmanBytes.length; i++) {
+            byte b = huffmanBytes[i];
+            //ÅĞ¶ÏÊÇ²»ÊÇ×îºóÒ»¸ö×Ö½Ú
+            boolean flag = (i == huffmanBytes.length - 1);
+            stringBuilder.append(byteToBitString(!flag, b));
         }
-        int originalLength = stringBuilder.length();
-        int len = (originalLength + 7) / 8;
-        byte[] huffmanBytes = new byte[len];
-        int index = 0;
-        for (int i = 0; i < originalLength; i += 8, index++) {
-            String strByte = stringBuilder.substring(i, Math.min(i + 8, originalLength));
-            huffmanBytes[index] = (byte) Integer.parseInt(strByte, 2);
+        //°Ñ×Ö·û´®°²×°Ö¸¶¨µÄºÕ·òÂü±àÂë½øĞĞ½âÂë
+        //°ÑºÕ·òÂü±àÂë±í½øĞĞµ÷»»£¬ÒòÎª·´Ïò²éÑ¯ a->100 100->a
+        Map<String, Byte>  map = new HashMap<String,Byte>();
+        for(Map.Entry<Byte, String> entry: huffmanCodes.entrySet()) {
+            map.put(entry.getValue(), entry.getKey());
         }
-        return new HuffmanZipResult(huffmanBytes, originalLength);
+
+        //´´½¨Òª¸ø¼¯ºÏ£¬´æ·Åbyte
+        List<Byte> list = new ArrayList<>();
+        //i ¿ÉÒÔÀí½â³É¾ÍÊÇË÷Òı,É¨Ãè stringBuilder
+        for(int  i = 0; i < stringBuilder.length(); ) {
+            int count = 1; // Ğ¡µÄ¼ÆÊıÆ÷
+            boolean flag = true;
+            Byte b = null;
+
+            while(flag) {
+                //1010100010111...
+                //µİÔöµÄÈ¡³ö key 1
+                String key = stringBuilder.substring(i, i+count);//i ²»¶¯£¬ÈÃcountÒÆ¶¯£¬Ö¸¶¨Æ¥Åäµ½Ò»¸ö×Ö·û
+                b = map.get(key);
+                if(b == null) {//ËµÃ÷Ã»ÓĞÆ¥Åäµ½
+                    count++;
+                }else {
+                    //Æ¥Åäµ½
+                    flag = false;
+                }
+            }
+            list.add(b);
+            i += count;//i Ö±½ÓÒÆ¶¯µ½ count
+        }
+        //µ±forÑ­»·½áÊøºó£¬ÎÒÃÇlistÖĞ¾Í´æ·ÅÁËËùÓĞµÄ×Ö·û  "i like like like java do you like a java"
+        //°Ñlist ÖĞµÄÊı¾İ·ÅÈëµ½byte[] ²¢·µ»Ø
+        byte b[] = new byte[list.size()];
+        for(int i = 0;i < b.length; i++) {
+            b[i] = list.get(i);
+        }
+        return b;
+
     }
 
-    public static HuffmanZipResult huffmanZip(byte[] bytes) {
-        List<Node> nodes = getNodes(bytes);
-        Node huffmanTreeRoot = createHuffmanTree(nodes);
-        Map<Byte, String> huffmanCodes = getCodes(huffmanTreeRoot);
-        return zip(bytes, huffmanCodes);
-    }
-
+    /**
+     * ½«Ò»¸öbyte ×ª³ÉÒ»¸ö¶ş½øÖÆµÄ×Ö·û´®, Èç¹û¿´²»¶®£¬¿ÉÒÔ²Î¿¼ÎÒ½²µÄJava»ù´¡ ¶ş½øÖÆµÄÔ­Âë£¬·´Âë£¬²¹Âë
+     * @param b ´«ÈëµÄ byte
+     * @param flag ±êÖ¾ÊÇ·ñĞèÒª²¹¸ßÎ»Èç¹ûÊÇtrue £¬±íÊ¾ĞèÒª²¹¸ßÎ»£¬Èç¹ûÊÇfalse±íÊ¾²»²¹, Èç¹ûÊÇ×îºóÒ»¸ö×Ö½Ú£¬ÎŞĞè²¹¸ßÎ»
+     * @return ÊÇ¸Ãb ¶ÔÓ¦µÄ¶ş½øÖÆµÄ×Ö·û´®£¬£¨×¢ÒâÊÇ°´²¹Âë·µ»Ø£©
+     */
     private static String byteToBitString(boolean flag, byte b) {
-        int temp = b;
-        if (flag) {
-            temp |= 256;
+        //Ê¹ÓÃ±äÁ¿±£´æ b
+        int temp = b; //½« b ×ª³É int
+        //Èç¹ûÊÇÕıÊıÎÒÃÇ»¹´æÔÚ²¹¸ßÎ»
+        if(flag) {
+            temp |= 256; //°´Î»Óë 256  1 0000 0000  | 0000 0001 => 1 0000 0001
         }
-        String str = Integer.toBinaryString(temp);
-        if (flag || str.length() > 8) {
+        String str = Integer.toBinaryString(temp); //·µ»ØµÄÊÇtemp¶ÔÓ¦µÄ¶ş½øÖÆµÄ²¹Âë
+        if(flag) {
             return str.substring(str.length() - 8);
         } else {
             return str;
         }
     }
 
-    public static byte[] decode(Map<Byte, String> huffmanCodes, HuffmanZipResult huffmanZipResult) {
+    //Ê¹ÓÃÒ»¸ö·½·¨£¬½«Ç°ÃæµÄ·½·¨·â×°ÆğÀ´£¬±ãÓÚÎÒÃÇµÄµ÷ÓÃ.
+    /**
+     *
+     * @param bytes Ô­Ê¼µÄ×Ö·û´®¶ÔÓ¦µÄ×Ö½ÚÊı×é
+     * @return ÊÇ¾­¹ı ºÕ·òÂü±àÂë´¦ÀíºóµÄ×Ö½ÚÊı×é(Ñ¹ËõºóµÄÊı×é)
+     */
+    private static byte[] huffmanZip(byte[] bytes) {
+        List<Node> nodes = getNodes(bytes);
+        //¸ù¾İ nodes ´´½¨µÄºÕ·òÂüÊ÷
+        Node huffmanTreeRoot = createHuffmanTree(nodes);
+        //¶ÔÓ¦µÄºÕ·òÂü±àÂë(¸ù¾İ ºÕ·òÂüÊ÷)
+        Map<Byte, String> huffmanCodes = getCodes(huffmanTreeRoot);
+        //¸ù¾İÉú³ÉµÄºÕ·òÂü±àÂë£¬Ñ¹ËõµÃµ½Ñ¹ËõºóµÄºÕ·òÂü±àÂë×Ö½ÚÊı×é
+        byte[] huffmanCodeBytes = zip(bytes, huffmanCodes);
+        return huffmanCodeBytes;
+    }
+
+
+    //±àĞ´Ò»¸ö·½·¨£¬½«×Ö·û´®¶ÔÓ¦µÄbyte[] Êı×é£¬Í¨¹ıÉú³ÉµÄºÕ·òÂü±àÂë±í£¬·µ»ØÒ»¸öºÕ·òÂü±àÂë Ñ¹ËõºóµÄbyte[]
+    /**
+     *
+     * @param bytes ÕâÊ±Ô­Ê¼µÄ×Ö·û´®¶ÔÓ¦µÄ byte[]
+     * @param huffmanCodes Éú³ÉµÄºÕ·òÂü±àÂëmap
+     * @return ·µ»ØºÕ·òÂü±àÂë´¦ÀíºóµÄ byte[]
+     * ¾ÙÀı£º String content = "i like like like java do you like a java"; =¡· byte[] contentBytes = content.getBytes();
+     * ·µ»ØµÄÊÇ ×Ö·û´® "1010100010111111110010001011111111001000101111111100100101001101110001110000011011101000111100101000101111111100110001001010011011100"
+     * => ¶ÔÓ¦µÄ byte[] huffmanCodeBytes  £¬¼´ 8Î»¶ÔÓ¦Ò»¸ö byte,·ÅÈëµ½ huffmanCodeBytes
+     * huffmanCodeBytes[0] =  10101000(²¹Âë) => byte  [ÍÆµ¼  10101000=> 10101000 - 1 => 10100111(·´Âë)=> 11011000= -88 ]
+     * huffmanCodeBytes[1] = -88
+     */
+    private static byte[] zip(byte[] bytes, Map<Byte, String> huffmanCodes) {
+
+        //1.ÀûÓÃ huffmanCodes ½«  bytes ×ª³É  ºÕ·òÂü±àÂë¶ÔÓ¦µÄ×Ö·û´®
         StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < huffmanZipResult.zipBytes.length; i++) {
-            boolean flag = (i == huffmanZipResult.zipBytes.length - 1);
-            stringBuilder.append(byteToBitString(!flag, huffmanZipResult.zipBytes[i]));
-        }
-        stringBuilder.setLength(huffmanZipResult.originalBinaryStringLength);
-
-        Map<String, Byte> map = new HashMap<>();
-        for (Map.Entry<Byte, String> entry : huffmanCodes.entrySet()) {
-            map.put(entry.getValue(), entry.getKey());
+        //±éÀúbytes Êı×é
+        for(byte b: bytes) {
+            stringBuilder.append(huffmanCodes.get(b));
         }
 
-        ArrayList<Byte> list = new ArrayList<>();
-        for (int i = 0; i < stringBuilder.length(); ) {
-            int count = 1;
-            boolean flag = true;
-            Byte b = null;
+        //System.out.println("²âÊÔ stringBuilder~~~=" + stringBuilder.toString());
 
-            while (flag) {
-                if (i + count > stringBuilder.length()) {
-                    break;
-                }
-                String key = stringBuilder.substring(i, i + count);
-                b = map.get(key);
+        //½« "1010100010111111110..." ×ª³É byte[]
 
-                if (b == null) {
-                    count++;
-                } else {
-                    flag = false;
-                }
+        //Í³¼Æ·µ»Ø  byte[] huffmanCodeBytes ³¤¶È
+        //Ò»¾ä»° int len = (stringBuilder.length() + 7) / 8;
+        int len;
+        if(stringBuilder.length() % 8 == 0) {
+            len = stringBuilder.length() / 8;
+        } else {
+            len = stringBuilder.length() / 8 + 1;
+        }
+        //´´½¨ ´æ´¢Ñ¹ËõºóµÄ byteÊı×é
+        byte[] huffmanCodeBytes = new byte[len];
+        int index = 0;//¼ÇÂ¼ÊÇµÚ¼¸¸öbyte
+        for (int i = 0; i < stringBuilder.length(); i += 8) { //ÒòÎªÊÇÃ¿8Î»¶ÔÓ¦Ò»¸öbyte,ËùÒÔ²½³¤ +8
+            String strByte;
+            if(i+8 > stringBuilder.length()) {//²»¹»8Î»
+                strByte = stringBuilder.substring(i);
+            }else{
+                strByte = stringBuilder.substring(i, i + 8);
             }
+            //½«strByte ×ª³ÉÒ»¸öbyte,·ÅÈëµ½ huffmanCodeBytes
+            huffmanCodeBytes[index] = (byte)Integer.parseInt(strByte, 2);
+            index++;
+        }
+        return huffmanCodeBytes;
+    }
 
-            if (b != null) {
-                list.add(b);
+    //Éú³ÉºÕ·òÂüÊ÷¶ÔÓ¦µÄºÕ·òÂü±àÂë
+    //Ë¼Â·:
+    //1. ½«ºÕ·òÂü±àÂë±í´æ·ÅÔÚ Map<Byte,String> ĞÎÊ½
+    //   Éú³ÉµÄºÕ·òÂü±àÂë±í{32=01, 97=100, 100=11000, 117=11001, 101=1110, 118=11011, 105=101, 121=11010, 106=0010, 107=1111, 108=000, 111=0011}
+    static Map<Byte, String> huffmanCodes = new HashMap<Byte,String>();
+    //2. ÔÚÉú³ÉºÕ·òÂü±àÂë±íÊ¾£¬ĞèÒªÈ¥Æ´½ÓÂ·¾¶, ¶¨ÒåÒ»¸öStringBuilder ´æ´¢Ä³¸öÒ¶×Ó½áµãµÄÂ·¾¶
+    static StringBuilder stringBuilder = new StringBuilder();
+
+
+    //ÎªÁËµ÷ÓÃ·½±ã£¬ÎÒÃÇÖØÔØ getCodes
+    private static Map<Byte, String> getCodes(Node root) {
+        if(root == null) {
+            return null;
+        }
+        //´¦ÀírootµÄ×ó×ÓÊ÷
+        getCodes(root.left, "0", stringBuilder);
+        //´¦ÀírootµÄÓÒ×ÓÊ÷
+        getCodes(root.right, "1", stringBuilder);
+        return huffmanCodes;
+    }
+
+    /**
+     * ¹¦ÄÜ£º½«´«ÈëµÄnode½áµãµÄËùÓĞÒ¶×Ó½áµãµÄºÕ·òÂü±àÂëµÃµ½£¬²¢·ÅÈëµ½huffmanCodes¼¯ºÏ
+     * @param node  ´«Èë½áµã
+     * @param code  Â·¾¶£º ×ó×Ó½áµãÊÇ 0, ÓÒ×Ó½áµã 1
+     * @param stringBuilder ÓÃÓÚÆ´½ÓÂ·¾¶
+     */
+    private static void getCodes(Node node, String code, StringBuilder stringBuilder) {
+        StringBuilder stringBuilder2 = new StringBuilder(stringBuilder);
+        //½«code ¼ÓÈëµ½ stringBuilder2
+        stringBuilder2.append(code);
+        if(node != null) { //Èç¹ûnode == null²»´¦Àí
+            //ÅĞ¶Ïµ±Ç°node ÊÇÒ¶×Ó½áµã»¹ÊÇ·ÇÒ¶×Ó½áµã
+            if(node.data == null) { //·ÇÒ¶×Ó½áµã
+                //µİ¹é´¦Àí
+                //Ïò×óµİ¹é
+                getCodes(node.left, "0", stringBuilder2);
+                //ÏòÓÒµİ¹é
+                getCodes(node.right, "1", stringBuilder2);
+            } else { //ËµÃ÷ÊÇÒ»¸öÒ¶×Ó½áµã
+                //¾Í±íÊ¾ÕÒµ½Ä³¸öÒ¶×Ó½áµãµÄ×îºó
+                huffmanCodes.put(node.data, stringBuilder2.toString());
             }
-            i += count;
-        }
-
-        byte[] bytes = new byte[list.size()];
-        for (int i = 0; i < list.size(); i++) {
-            bytes[i] = list.get(i);
-        }
-        return bytes;
-    }
-
-
-    // å‹ç¼©æ–‡ä»¶æ–¹æ³•
-    public static void compressFile(String inputFilePath, String outputFilePath) throws IOException {
-        byte[] fileContent = Files.readAllBytes(Paths.get(inputFilePath));
-        HuffmanZipResult zipResult = huffmanZip(fileContent);
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(outputFilePath))) {
-            oos.writeObject(zipResult.zipBytes); // å‹ç¼©åçš„æ•°æ®
-            oos.writeObject(huffmanCodes);       // ç¼–ç è¡¨
-            oos.writeInt(zipResult.originalBinaryStringLength); // åŸå§‹äºŒè¿›åˆ¶ä¸²é•¿åº¦
         }
     }
 
+    //Ç°Ğò±éÀúµÄ·½·¨
+    private static void preOrder(Node root) {
+        if(root != null) {
+            root.preOrder();
+        }else {
+            System.out.println("ºÕ·òÂüÊ÷Îª¿Õ");
+        }
+    }
 
-    // è§£å‹æ–‡ä»¶æ–¹æ³•
-    public static void decompressFile(String inputFilePath, String outputFilePath) throws IOException, ClassNotFoundException {
-        byte[] compressedData;
-        Map<Byte, String> huffmanCodes;
-        int originalBinaryStringLength;
+    /**
+     *
+     * @param bytes ½ÓÊÕ×Ö½ÚÊı×é
+     * @return ·µ»ØµÄ¾ÍÊÇ List ĞÎÊ½   [Node[date=97 ,weight = 5], Node[]date=32,weight = 9]......],
+     */
+    private static List<Node> getNodes(byte[] bytes) {
 
-        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(inputFilePath))) {
-            compressedData = (byte[]) ois.readObject();
-            huffmanCodes = (Map<Byte, String>) ois.readObject();
-            originalBinaryStringLength = ois.readInt();
+        //1´´½¨Ò»¸öArrayList
+        ArrayList<Node> nodes = new ArrayList<Node>();
+
+        //±éÀú bytes , Í³¼Æ Ã¿Ò»¸öbyte³öÏÖµÄ´ÎÊı->map[key,value]
+        Map<Byte, Integer> counts = new HashMap<>();
+        for (byte b : bytes) {
+            Integer count = counts.get(b);
+            if (count == null) { // Map»¹Ã»ÓĞÕâ¸ö×Ö·ûÊı¾İ,µÚÒ»´Î
+                counts.put(b, 1);
+            } else {
+                counts.put(b, count + 1);
+            }
         }
 
-        HuffmanZipResult zipResult = new HuffmanZipResult(compressedData, originalBinaryStringLength);
-        byte[] decompressedData = decode(huffmanCodes, zipResult);
-        Files.write(Paths.get(outputFilePath), decompressedData);
+        //°ÑÃ¿Ò»¸ö¼üÖµ¶Ô×ª³ÉÒ»¸öNode ¶ÔÏó£¬²¢¼ÓÈëµ½nodes¼¯ºÏ
+        //±éÀúmap
+        for(Map.Entry<Byte, Integer> entry: counts.entrySet()) {
+            nodes.add(new Node(entry.getKey(), entry.getValue()));
+        }
+        return nodes;
+
+    }
+
+    //¿ÉÒÔÍ¨¹ıList ´´½¨¶ÔÓ¦µÄºÕ·òÂüÊ÷
+    private static Node createHuffmanTree(List<Node> nodes) {
+
+        while(nodes.size() > 1) {
+            //ÅÅĞò, ´ÓĞ¡µ½´ó
+            Collections.sort(nodes);
+            //È¡³öµÚÒ»¿Å×îĞ¡µÄ¶ş²æÊ÷
+            Node leftNode = nodes.get(0);
+            //È¡³öµÚ¶ş¿Å×îĞ¡µÄ¶ş²æÊ÷
+            Node rightNode = nodes.get(1);
+            //´´½¨Ò»¿ÅĞÂµÄ¶ş²æÊ÷,ËüµÄ¸ù½Úµã Ã»ÓĞdata, Ö»ÓĞÈ¨Öµ
+            Node parent = new Node(null, leftNode.weight + rightNode.weight);
+            parent.left = leftNode;
+            parent.right = rightNode;
+
+            //½«ÒÑ¾­´¦ÀíµÄÁ½¿Å¶ş²æÊ÷´ÓnodesÉ¾³ı
+            nodes.remove(leftNode);
+            nodes.remove(rightNode);
+            //½«ĞÂµÄ¶ş²æÊ÷£¬¼ÓÈëµ½nodes
+            nodes.add(parent);
+
+        }
+        //nodes ×îºóµÄ½áµã£¬¾ÍÊÇºÕ·òÂüÊ÷µÄ¸ù½áµã
+        return nodes.get(0);
+
     }
 
 
+}
 
+
+
+//´´½¨Node ,´ıÊı¾İºÍÈ¨Öµ
+class Node implements Comparable<Node>  {
+    Byte data; // ´æ·ÅÊı¾İ(×Ö·û)±¾Éí£¬±ÈÈç'a' => 97 ' ' => 32
+    int weight; //È¨Öµ, ±íÊ¾×Ö·û³öÏÖµÄ´ÎÊı
+    Node left;//
+    Node right;
+    public Node(Byte data, int weight) {
+
+        this.data = data;
+        this.weight = weight;
+    }
+    @Override
+    public int compareTo(Node o) {
+        // ´ÓĞ¡µ½´óÅÅĞò
+        return this.weight - o.weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Node [data = " + data + " weight=" + weight + "]";
+    }
+
+    //Ç°Ğò±éÀú
+    public void preOrder() {
+        System.out.println(this);
+        if(this.left != null) {
+            this.left.preOrder();
+        }
+        if(this.right != null) {
+            this.right.preOrder();
+        }
+    }
 }
