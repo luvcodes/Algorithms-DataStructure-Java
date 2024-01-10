@@ -43,9 +43,6 @@ public class BinarySortTreeDemo {
 class BinarySortTree {
 	private Node root;
 	
-	
-	
-	
 	public Node getRoot() {
 		return root;
 	}
