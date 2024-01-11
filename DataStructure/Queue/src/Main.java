@@ -1,10 +1,13 @@
 import java.sql.Array;
 import java.util.Scanner;
 
+/**
+ * @author ryanw
+ */
 public class Main {
     public static void main(String[] args) {
         ArrayQueue queue = new ArrayQueue(3);
-        char key = ' '; // 接收用户输入
+        char key = ' ';
         Scanner scanner = new Scanner(System.in);
         boolean loop = true;
         // 输出一个菜单
@@ -14,7 +17,7 @@ public class Main {
             System.out.println("Add queue: ");
             System.out.println("Get element: ");
             System.out.println("Head element: ");
-            key = scanner.next().charAt(0); // 接收一个字符
+            key = scanner.next().charAt(0);
             switch (key) {
                 case 's':
                     queue.showQueue();
@@ -28,7 +31,7 @@ public class Main {
                     int value = scanner.nextInt();
                     queue.addQueue(value);
                     break;
-                case 'g': // 取出数据
+                case 'g':
                     try {
                         int res = queue.getQueue();
                         System.out.printf("Get element: %d\n", res);
@@ -36,7 +39,7 @@ public class Main {
                         System.out.println(e.getMessage());
                     }
                     break;
-                case 'h': // 查看队列头的数据
+                case 'h':
                     try {
                         int res = queue.headQueue();
                         System.out.printf("Head element: %d\n", res);
@@ -56,15 +59,18 @@ public class Main {
 class ArrayQueue {
     // 表示数组的最大容量
     private int maxSize;
-    private int front; // 队列头
-    private int rear; // 队列尾
-    private int[] arr; // 该数组用于存放数据，模拟队列
+    private int front;
+    private int rear;
+    // 该数组用于存放数据，模拟队列
+    private int[] arr;
 
     public ArrayQueue(int arrMaxSize) {
         maxSize = arrMaxSize;
         arr = new int[maxSize];
-        front = -1; // 指向队列头部，分析出front是指向队列头的前一个位置
-        rear = -1; // 指向队列尾，指向队列尾的数据（即就是队列最后一个数据）
+        // 指向队列头部，分析出front是指向队列头的前一个位置
+        front = -1;
+        // 指向队列尾，指向队列尾的数据（即就是队列最后一个数据）
+        rear = -1;
     }
 
     // 判断队列是否满
