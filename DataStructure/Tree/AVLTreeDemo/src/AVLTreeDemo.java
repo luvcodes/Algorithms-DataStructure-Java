@@ -1,8 +1,8 @@
 
 public class AVLTreeDemo {
     public static void main(String[] args) {
-        //int[] arr = {4,3,6,5,7,8};
-        //int[] arr = { 10, 12, 8, 9, 7, 6 };
+//        int[] arr = {4,3,6,5,7,8};
+//        int[] arr = { 10, 12, 8, 9, 7, 6 };
         int[] arr = { 10, 11, 7, 6, 8, 9 };
         //创建一个 AVLTree对象
         AVLTree avlTree = new AVLTree();
@@ -20,10 +20,8 @@ public class AVLTreeDemo {
         System.out.println("树的左子树高度=" + avlTree.getRoot().leftHeight());
         System.out.println("树的右子树高度=" + avlTree.getRoot().rightHeight());
         System.out.println("当前的根结点=" + avlTree.getRoot());
-
-
+        System.out.println("当前的根结点=" + avlTree.getRoot().right.right);
     }
-
 }
 
 // 创建AVLTree
@@ -161,7 +159,6 @@ class Node {
     Node right;
 
     public Node(int value) {
-
         this.value = value;
     }
 
@@ -183,17 +180,17 @@ class Node {
 
     // 返回 以该结点为根结点的树的高度
     public int height() {
+        // 本身节点也要算一层 所以要+1
         return Math.max(left == null ? 0 : left.height(), right == null ? 0 : right.height()) + 1;
     }
 
     //左旋转方法
     private void leftRotate() {
-
         //创建新的结点，以当前根结点的值
         Node newNode = new Node(value);
         //把新的结点的左子树设置成当前结点的左子树
         newNode.left = left;
-        //把新的结点的右子树设置成带你过去结点的右子树的左子树
+        //把新的结点的右子树设置成当前结点的右子树的左子树
         newNode.right = right.left;
         //把当前结点的值替换成右子结点的值
         value = right.value;
@@ -201,8 +198,6 @@ class Node {
         right = right.right;
         //把当前结点的左子树(左子结点)设置成新的结点
         left = newNode;
-
-
     }
 
     //右旋转
@@ -218,8 +213,7 @@ class Node {
     // 查找要删除的结点
     /**
      *
-     * @param value
-     *            希望删除的结点的值
+     * @param value 希望删除的结点的值
      * @return 如果找到返回该结点，否则返回null
      */
     public Node search(int value) {
@@ -243,8 +237,7 @@ class Node {
     // 查找要删除结点的父结点
     /**
      *
-     * @param value
-     *            要找到的结点的值
+     * @param value 要找到的结点的值
      * @return 返回的是要删除的结点的父结点，如果没有就返回null
      */
     public Node searchParent(int value) {
@@ -307,7 +300,7 @@ class Node {
                 //直接进行左旋转即可
                 leftRotate();
             }
-            return ; //必须要!!!
+            return; //必须要!!! 因为这里已经平衡了二叉树，继续往后判断就没有意义了
         }
 
         //当添加完一个结点后，如果 (左子树的高度 - 右子树的高度) > 1, 右旋转
