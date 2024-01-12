@@ -1,8 +1,5 @@
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class Graph {
     //存储顶点集合
@@ -167,6 +164,42 @@ public class Graph {
             }
         }
     }
+
+    // 使用栈实现的深度优先遍历
+    public void dfsStack() {
+        // 初始化访问标记数组
+        isVisited = new boolean[vertexList.size()];
+        // 创建栈用于存储待访问的顶点
+        Stack<Integer> stack = new Stack<>();
+
+        // 遍历所有的结点，对每个未访问过的结点执行DFS
+        for (int i = 0; i < getNumOfVertex(); i++) {
+            if (!isVisited[i]) {
+                // 将当前结点压入栈
+                stack.push(i);
+
+                // 当栈不为空时继续执行
+                while (!stack.isEmpty()) {
+                    // 弹出栈顶元素
+                    int current = stack.pop();
+
+                    // 如果当前节点未被访问，则访问并标记
+                    if (!isVisited[current]) {
+                        System.out.print(getValueByIndex(current) + "=>");
+                        isVisited[current] = true;
+
+                        // 将所有未访问的邻接节点压入栈
+                        for (int j = getNumOfVertex() - 1; j >= 0; j--) {
+                            if (edges[current][j] > 0 && !isVisited[j]) {
+                                stack.push(j);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     //对一个结点进行广度优先遍历的方法
     private void bfs(boolean[] isVisited, int i) {
