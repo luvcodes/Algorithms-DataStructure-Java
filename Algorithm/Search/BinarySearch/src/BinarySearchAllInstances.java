@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ryanw
+ */
 public class BinarySearchAllInstances {
     public static List<Integer> binarySearchAll(int[] array, int target) {
         List<Integer> resultIndices = new ArrayList<>();
