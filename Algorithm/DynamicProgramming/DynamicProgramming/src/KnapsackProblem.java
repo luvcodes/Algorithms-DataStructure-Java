@@ -1,4 +1,3 @@
-
 public class KnapsackProblem {
 
     public static void main(String[] args) {
@@ -24,15 +23,18 @@ public class KnapsackProblem {
 
         //根据前面得到公式来动态规划处理
         for(int i = 1; i < v.length; i++) { //不处理第一行 i是从1开始的
-            for(int j=1; j < v[0].length; j++) {//不处理第一列, j是从1开始的
+            for(int j = 1; j < v[0].length; j++) {//不处理第一列, j是从1开始的
                 //公式
-                if(w[i-1]> j) { // 因为我们程序i 是从1开始的，因此原来公式中的 w[i] 修改成 w[i-1]
-                    v[i][j]=v[i-1][j];
+                if(w[i - 1] > j) { // 因为我们程序i 是从1开始的，因此原来公式中的 w[i] 修改成 w[i-1]
+                    // 在二维数组 v 中，如果第 i 个物品的重量超过了当前考虑的背包容量 j，那么就直接继承前 i-1 个物品在容量 j 下的最大价值 (就是上一个单元格的值)
+                    v[i][j] = v[i - 1][j];
                 } else {
-                    //说明:
-                    //因为我们的i 从1开始的， 因此公式需要调整成
-                    //v[i][j]=Math.max(v[i-1][j], val[i-1]+v[i-1][j-w[i-1]]);
-                    //v[i][j] = Math.max(v[i - 1][j], val[i - 1] + v[i - 1][j - w[i - 1]]);
+                    //说明: 如果能放下当前物品，则比较不放这个物品 (继承上一位的值)和放这个物品的情况，选择价值更大的一个。
+                    //因为我们的i 从1开始的， 因此公式v[i][j] = Math.max(v[i-1][j], val[i] + v[i-1][j-w[i]]);
+                    // 需要调整成 v[i][j] = Math.max(v[i - 1][j], val[i - 1] + v[i - 1][j - w[i - 1]]);
+                    // v[i - 1][j - w[i - 1]]意思是装入i-1个商品 (有可能不是一个, 也不一定全都装进去)到当前单元格的剩余空间。
+                    // j - w[i - 1]的意思: j是当前背包的容量，w[i-1]是已经装进去的商品的容量 (重量)
+
                     //为了记录商品存放到背包的情况，我们不能直接的使用上面的公式，需要使用if-else来体现公式
                     if(v[i - 1][j] < val[i - 1] + v[i - 1][j - w[i - 1]]) {
                         v[i][j] = val[i - 1] + v[i - 1][j - w[i - 1]];
@@ -41,7 +43,6 @@ public class KnapsackProblem {
                     } else {
                         v[i][j] = v[i - 1][j];
                     }
-
                 }
             }
         }
