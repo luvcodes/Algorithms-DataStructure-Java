@@ -1,4 +1,4 @@
-public class ViolenceMatch {
+public class BruteForceMatch{
     public static void main(String[] args) {
         //测试暴力匹配算法
         String str1 = "硅硅谷 尚硅谷你尚硅 尚硅谷你尚硅谷你尚硅你好";
