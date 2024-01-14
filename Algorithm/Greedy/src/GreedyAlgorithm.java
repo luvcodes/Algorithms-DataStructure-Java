@@ -3,12 +3,15 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
+/**
+ * @author ryanw
+ */
 public class GreedyAlgorithm {
-
     public static void main(String[] args) {
-        //创建广播电台,放入到Map
+        // 创建广播电台
         HashMap<String,HashSet<String>> broadcasts = new HashMap<String, HashSet<String>>();
-        //将各个电台放入到broadcasts
+
+        // 将各个电台放入到broadcasts
         HashSet<String> hashSet1 = new HashSet<String>();
         hashSet1.add("北京");
         hashSet1.add("上海");
@@ -24,7 +27,6 @@ public class GreedyAlgorithm {
         hashSet3.add("上海");
         hashSet3.add("杭州");
 
-
         HashSet<String> hashSet4 = new HashSet<String>();
         hashSet4.add("上海");
         hashSet4.add("天津");
@@ -33,7 +35,7 @@ public class GreedyAlgorithm {
         hashSet5.add("杭州");
         hashSet5.add("大连");
 
-        //加入到map
+        //加入到map中，5个电台，对应5个hashset
         broadcasts.put("K1", hashSet1);
         broadcasts.put("K2", hashSet2);
         broadcasts.put("K3", hashSet3);
@@ -51,49 +53,54 @@ public class GreedyAlgorithm {
         allAreas.add("杭州");
         allAreas.add("大连");
 
-        //创建ArrayList, 存放选择的电台集合
+        // 用于存储最终选择的电台集合
         ArrayList<String> selects = new ArrayList<String>();
 
-        //定义一个临时的集合， 在遍历的过程中，存放遍历过程中的电台覆盖的地区和当前还没有覆盖的地区的交集
+        // 在遍历的过程中，存放遍历过程中的电台覆盖的地区和allAreas的交集
         HashSet<String> tempSet = new HashSet<String>();
 
-        //定义给maxKey ， 保存在一次遍历过程中，能够覆盖最大未覆盖的地区对应的电台的key
-        //如果maxKey 不为null , 则会加入到 selects
+        // 定义maxKey，保存在一次遍历过程中，能够覆盖最多城市的对应的电台key
         String maxKey = null;
-        while(allAreas.size() != 0) { // 如果allAreas 不为0, 则表示还没有覆盖到所有的地区
-            //每进行一次while,需要
+
+        // 如果allAreas 不为0, 则表示还没有覆盖到所有的地区
+        while(allAreas.size() != 0) {
+            // 每进行一次while, 需要置空maxKey
+            // 因为每次都要选择一次maxKey
             maxKey = null;
 
-            //遍历 broadcasts, 取出对应key
+            // 遍历 broadcasts, 取出对应key (就是电台编号)
             for(String key : broadcasts.keySet()) {
-                //每进行一次for
+                //每进行一次for, 都清空一次tempSet
                 tempSet.clear();
+
                 //当前这个key能够覆盖的地区
                 HashSet<String> areas = broadcasts.get(key);
                 tempSet.addAll(areas);
-                //求出tempSet 和   allAreas 集合的交集, 交集会赋给 tempSet
+
+                //求出tempSet和allAreas集合的交集, 交集会赋给tempSet
                 tempSet.retainAll(allAreas);
-                //如果当前这个集合包含的未覆盖地区的数量，比maxKey指向的集合地区还多
-                //就需要重置maxKey
-                // tempSet.size() >broadcasts.get(maxKey).size()) 体现出贪心算法的特点,每次都选择最优的
+
+                // tempSet 为空的情况发生在当前电台覆盖的区域都已经被之前选中的电台覆盖了。
+                // 这就是为什么需要检查 tempSet.size() > 0，以确保当前电台能至少覆盖一个新的区域。
                 if(tempSet.size() > 0 &&
-                        (maxKey == null || tempSet.size() >broadcasts.get(maxKey).size())){
+                        (maxKey == null || tempSet.size() > broadcasts.get(maxKey).size())){
                     maxKey = key;
                 }
             }
-            //maxKey != null, 就应该将maxKey 加入selects
+
+            // 如果maxKey != null, 就应该将maxKey加入selects
             if(maxKey != null) {
                 selects.add(maxKey);
-                //将maxKey指向的广播电台覆盖的地区，从 allAreas 去掉
+                // 将maxKey指向的广播电台所覆盖的地区，从allAreas中去掉
                 allAreas.removeAll(broadcasts.get(maxKey));
             }
 
         }
 
-        System.out.println("得到的选择结果是" + selects);//[K1,K2,K3,K5]
 
 
 
+        // [K1,K2,K3,K5]
+        System.out.println("得到的选择结果是" + selects);
     }
-
 }

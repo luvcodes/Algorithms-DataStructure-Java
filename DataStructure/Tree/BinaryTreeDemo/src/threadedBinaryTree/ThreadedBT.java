@@ -12,7 +12,7 @@ public class ThreadedBT {
         HeroNode heroNode5 = new HeroNode(10, "king");
         HeroNode heroNode6 = new HeroNode(14, "dim");
 
-        // 二叉树现在先简单处理使用手动创建
+        // 手动创建二叉树
         root.setLeft(heroNode2);
         root.setRight(heroNode3);
         heroNode2.setLeft(heroNode4);
