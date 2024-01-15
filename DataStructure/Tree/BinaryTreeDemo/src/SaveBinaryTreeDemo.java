@@ -1,7 +1,7 @@
 /**
  * @author ryanw
  */
-public class ArrBinaryTreeDemo {
+public class SaveBinaryTreeDemo {
     public static void main(String[] args) {
         int[] arr = {1, 2, 3, 4, 5, 6, 7};
         ArrayBinaryTree arrBinaryTree = new ArrayBinaryTree(arr);
@@ -35,7 +35,7 @@ class ArrayBinaryTree {
         if (index >= arr.length) {
             return;
         }
-        System.out.println(arr[index]);
+        System.out.print(arr[index]);
         if (2 * index + 1 < arr.length) {
             preOrder(2 * index + 1);
         }

@@ -1,3 +1,6 @@
+/**
+ * @author ryanw
+ */
 public class BinaryTreeDemo {
     public static void main(String[] args) {
         BinaryTree binaryTree = new BinaryTree();
@@ -80,7 +83,7 @@ class BinaryTree {
         return root;
     }
 
-    // 编写前序遍历的方法
+    // 前序遍历
     public void preOrder() {
         if (this.root != null) {
             this.root.preOrder();
