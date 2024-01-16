@@ -1,7 +1,6 @@
 import java.util.Arrays;
 
 public class KruskalCase {
-
     private int edgeNum; //边的个数
     private char[] vertexs; //顶点数组
     private int[][] matrix; //邻接矩阵
@@ -26,11 +25,10 @@ public class KruskalCase {
         KruskalCase kruskalCase = new KruskalCase(vertexs, matrix);
         //输出构建的
         kruskalCase.print();
+        //获取最小生成树
         kruskalCase.kruskal();
-
     }
 
-    //构造器
     public KruskalCase(char[] vertexs, int[][] matrix) {
         //初始化顶点数和边的个数
         int vlen = vertexs.length;
@@ -44,41 +42,45 @@ public class KruskalCase {
         //初始化边, 使用的是复制拷贝的方式
         this.matrix = new int[vlen][vlen];
         for(int i = 0; i < vlen; i++) {
-            for(int j= 0; j < vlen; j++) {
+            for(int j = 0; j < vlen; j++) {
                 this.matrix[i][j] = matrix[i][j];
             }
         }
-        //统计边的条数
-        for(int i =0; i < vlen; i++) {
+
+        // 统计边的条数, 这样就可以在遍历和选择边的过程中有一个明确的结束条件
+        // 当选取的边数量等于顶点数减一时，就意味着最小生成树已经构建完成。
+        for(int i = 0; i < vlen; i++) {
             for(int j = i+1; j < vlen; j++) {
                 if(this.matrix[i][j] != INF) {
                     edgeNum++;
                 }
             }
         }
-
     }
+
+
     public void kruskal() {
         int index = 0; //表示最后结果数组的索引
-        int[] ends = new int[edgeNum]; //用于保存"已有最小生成树" 中的每个顶点在最小生成树中的终点
-        //创建结果数组, 保存最后的最小生成树
+        // 用于保存"已有最小生成树" 中的每个顶点在最小生成树中的终点, 这对检测新添加的边是否会形成环非常关键。
+        int[] ends = new int[edgeNum];
+        //创建结果数组, 存储最终的最小生成树中的边
         EData[] rets = new EData[edgeNum];
 
-        //获取图中 所有的边的集合 ， 一共有12边
+        // 从邻接矩阵中提取所有边，一共有12条边
         EData[] edges = getEdges();
         System.out.println("图的边的集合=" + Arrays.toString(edges) + " 共"+ edges.length); //12
 
-        //按照边的权值大小进行排序(从小到大)
+        // 按照边的权值大小进行排序(从小到大) 这确保了算法能够首先考虑权重最小的边。
         sortEdges(edges);
 
-        //遍历edges 数组，将边添加到最小生成树中时，判断是准备加入的边否形成了回路，如果没有，就加入 rets, 否则不能加入
-        for(int i=0; i < edgeNum; i++) {
-            //获取到第i条边的第一个顶点(起点)
-            int p1 = getPosition(edges[i].start); //p1=4
-            //获取到第i条边的第2个顶点
-            int p2 = getPosition(edges[i].end); //p2 = 5
+        // 遍历edges数组，将边添加到最小生成树中时，判断是准备加入的边否形成了回路，如果没有，就加入 rets, 否则不能加入
+        for(int i = 0; i < edgeNum; i++) {
+            // 获取到第i条边的第一个顶点(起点)
+            int p1 = getPosition(edges[i].start);
+            // 获取到第i条边的第2个顶点
+            int p2 = getPosition(edges[i].end);
 
-            //获取p1这个顶点在已有最小生成树中的终点
+            // 获取p1这个顶点在已有最小生成树中的终点
             int m = getEnd(ends, p1); //m = 4
             //获取p2这个顶点在已有最小生成树中的终点
             int n = getEnd(ends, p2); // n = 5
@@ -94,8 +96,6 @@ public class KruskalCase {
         for(int i = 0; i < index; i++) {
             System.out.println(rets[i]);
         }
-
-
     }
 
     //打印邻接矩阵
@@ -124,8 +124,8 @@ public class KruskalCase {
             }
         }
     }
+
     /**
-     *
      * @param ch 顶点的值，比如'A','B'
      * @return 返回ch顶点对应的下标，如果找不到，返回-1
      */
@@ -138,6 +138,7 @@ public class KruskalCase {
         //找不到,返回-1
         return -1;
     }
+
     /**
      * 功能: 获取图中边，放到EData[] 数组中，后面我们需要遍历该数组
      * 是通过matrix 邻接矩阵来获取
@@ -148,7 +149,7 @@ public class KruskalCase {
         int index = 0;
         EData[] edges = new EData[edgeNum];
         for(int i = 0; i < vertexs.length; i++) {
-            for(int j=i+1; j <vertexs.length; j++) {
+            for(int j= i + 1; j < vertexs.length; j++) {
                 if(matrix[i][j] != INF) {
                     edges[index++] = new EData(vertexs[i], vertexs[j], matrix[i][j]);
                 }
@@ -156,6 +157,7 @@ public class KruskalCase {
         }
         return edges;
     }
+
     /**
      * 功能: 获取下标为i的顶点的终点(), 用于后面判断两个顶点的终点是否相同
      * @param ends ： 数组就是记录了各个顶点对应的终点是哪个,ends 数组是在遍历过程中，逐步形成
@@ -168,7 +170,6 @@ public class KruskalCase {
         }
         return i;
     }
-
 }
 
 //创建一个类EData ，它的对象实例就表示一条边
@@ -176,7 +177,7 @@ class EData {
     char start; //边的一个点
     char end; //边的另外一个点
     int weight; //边的权值
-    //构造器
+
     public EData(char start, char end, int weight) {
         this.start = start;
         this.end = end;
