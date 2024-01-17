@@ -1,57 +1,57 @@
+import java.util.Arrays;
+
+/**
+ * @author ryanw
+ */
 public class Dijkstra {
 
-    private static final int INF = 65535; // 用N表示不可连接
+    private static final int INF = Integer.MAX_VALUE;
 
-    // 方法：寻找最短路径
-    int minDistance(int[] dist, Boolean[] sptSet, int V) {
-        int min = INF, minIndex = -1;
+    // Dijkstra算法的实现
+    public static void dijkstra(int[][] graph, int startVertex) {
+        int numVertices = graph.length;
+        boolean[] visited = new boolean[numVertices];
+        int[] distance = new int[numVertices];
+        Arrays.fill(distance, INF);
+        distance[startVertex] = 0;
 
-        for (int v = 0; v < V; v++) {
-            if (!sptSet[v] && dist[v] <= min) {
-                min = dist[v];
-                minIndex = v;
+        for (int i = 0; i < numVertices - 1; i++) {
+            int u = findMinDistance(distance, visited);
+            visited[u] = true;
+
+            for (int v = 0; v < numVertices; v++) {
+                if (!visited[v] && graph[u][v] != 0 && distance[u] != INF && distance[u] + graph[u][v] < distance[v]) {
+                    distance[v] = distance[u] + graph[u][v];
+                }
+            }
+        }
+
+        printSolution(distance);
+    }
+
+    // 找到未访问顶点中距离最小的顶点
+    private static int findMinDistance(int[] distance, boolean[] visited) {
+        int minDistance = INF, minIndex = -1;
+        for (int i = 0; i < distance.length; i++) {
+            if (!visited[i] && distance[i] < minDistance) {
+                minDistance = distance[i];
+                minIndex = i;
             }
         }
         return minIndex;
     }
 
-    // 打印构建的距离数组
-    void printSolution(int[] dist, char[] vertex) {
-        System.out.println("Vertex \t Distance from Source");
-        for (int i = 0; i < vertex.length; i++)
-            System.out.println(vertex[i] + " \t\t\t " + dist[i]);
-    }
-
-    // 实现Dijkstra算法
-    void dijkstra(int[][] graph, int src, char[] vertex) {
-        int V = vertex.length;
-        int[] dist = new int[V];
-        Boolean[] sptSet = new Boolean[V];
-
-        for (int i = 0; i < V; i++) {
-            dist[i] = INF;
-            sptSet[i] = false;
+    // 打印最短路径数组
+    private static void printSolution(int[] distance) {
+        System.out.println("Vertex\tDistance from Source");
+        for (int i = 0; i < distance.length; i++) {
+            System.out.println(i + "\t\t" + distance[i]);
         }
-
-        dist[src] = 0;
-
-        for (int count = 0; count < V - 1; count++) {
-            int u = minDistance(dist, sptSet, V);
-            sptSet[u] = true;
-
-            for (int v = 0; v < V; v++) {
-                if (!sptSet[v] && graph[u][v] != INF && dist[u] != INF && dist[u] + graph[u][v] < dist[v]) {
-                    dist[v] = dist[u] + graph[u][v];
-                }
-            }
-        }
-
-        printSolution(dist, vertex);
     }
 
     public static void main(String[] args) {
-        char[] vertex = { 'A', 'B', 'C', 'D', 'E', 'F', 'G' };
-        final int N = 65535; // 表示不可连接
+        char[] vertex = {'A', 'B', 'C', 'D', 'E', 'F', 'G'};
+        final int N = 65535;
         int[][] matrix = {
                 {N, 5, 7, N, N, N, 2},
                 {5, N, N, 9, N, N, 3},
@@ -62,7 +62,7 @@ public class Dijkstra {
                 {2, 3, N, N, 4, 6, N}
         };
 
-        Dijkstra t = new Dijkstra();
-        t.dijkstra(matrix, 0, vertex); // 从顶点A开始寻找最短路径
+        // 从顶点A开始计算最短路径
+        dijkstra(matrix, 0);
     }
 }
