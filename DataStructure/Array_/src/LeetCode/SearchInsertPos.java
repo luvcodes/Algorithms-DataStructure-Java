@@ -1,0 +1,37 @@
+package LeetCode;
+
+/**
+ * LeetCode题目编号35，搜索插入位置
+ * 给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+ * 请必须使用时间复杂度为 O(log n) 的算法。
+ * */
+public class SearchInsertPos {
+    public static void main(String[] args) {
+        int[] nums = new int[]{1,2,3};
+
+        searchInsert(new int[]{1,2,3}, 0);
+    }
+
+    public static int searchInsert(int[] nums, int target) {
+        // 使用二分查找的方法
+        // 首先得到nums数组的长度
+        int n = nums.length;
+
+        // 判断如果二分之后的结果小于target，right左移，如果大于target，right右移
+        int left = 0;
+        int right = n - 1;
+        int answer = n;
+
+        while (left <= right) {
+            int mid = left + ((right - left) >> 1); // left + (right - left) / 2
+            if (target <= nums[mid]) {
+                answer = mid;
+                right = mid - 1;
+            } else {
+                left = mid + 1;
+            }
+        }
+
+        return answer;
+    }
+}
