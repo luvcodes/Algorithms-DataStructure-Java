@@ -1,5 +1,3 @@
-package com.atguigu.sparseArray;
-
 import org.junit.Test;
 
 /**
