@@ -1,3 +1,6 @@
+/**
+ * @author ryanw
+ */
 public class ReverseStr {
     public static void main(String[] args) {
         char[] str = {'h', 'e', 'l', 'l', 'o'};
