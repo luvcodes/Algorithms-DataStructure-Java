@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Tree/AVLTreeDemo/AVLTreeDemo.iml" filepath="$PROJECT_DIR$/DataStructure/Tree/AVLTreeDemo/AVLTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Algorithms-DataStructure-Java.iml" filepath="$PROJECT_DIR$/.idea/Algorithms-DataStructure-Java.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Array_/Array_.iml" filepath="$PROJECT_DIR$/DataStructure/Array_/Array_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Tree/BInarySearchTreeDemo/BInarySearchTreeDemo.iml" filepath="$PROJECT_DIR$/DataStructure/Tree/BInarySearchTreeDemo/BInarySearchTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Search/BinarySearch/BinarySearch.iml" filepath="$PROJECT_DIR$/Algorithm/Search/BinarySearch/BinarySearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Search/BinarySearchNoRecursion/BinarySearchNoRecursion.iml" filepath="$PROJECT_DIR$/Algorithm/Search/BinarySearchNoRecursion/BinarySearchNoRecursion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Tree/BinaryTreeDemo/BinaryTreeDemo.iml" filepath="$PROJECT_DIR$/DataStructure/Tree/BinaryTreeDemo/BinaryTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/BubbleSort/BubbleSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/BubbleSort/BubbleSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/DijkstraAlgorithm/DijkstraAlgorithm.iml" filepath="$PROJECT_DIR$/Algorithm/DijkstraAlgorithm/DijkstraAlgorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/DivideAndConquer/DivideAndConquer.iml" filepath="$PROJECT_DIR$/Algorithm/DivideAndConquer/DivideAndConquer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/DynamicProgramming/DynamicProgramming.iml" filepath="$PROJECT_DIR$/Algorithm/DynamicProgramming/DynamicProgramming.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Search/FibonacciSearch/FibonacciSearch.iml" filepath="$PROJECT_DIR$/Algorithm/Search/FibonacciSearch/FibonacciSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/FloydAlgorithm/FloydAlgorithm.iml" filepath="$PROJECT_DIR$/Algorithm/FloydAlgorithm/FloydAlgorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Graph/Graph.iml" filepath="$PROJECT_DIR$/DataStructure/Graph/Graph.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Greedy/Greedy.iml" filepath="$PROJECT_DIR$/Algorithm/Greedy/Greedy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/HashTableDemo/HashTableDemo.iml" filepath="$PROJECT_DIR$/DataStructure/HashTableDemo/HashTableDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/HorseChessboard/HorseChessboard.iml" filepath="$PROJECT_DIR$/Algorithm/HorseChessboard/HorseChessboard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Tree/HuffmanCode/HuffmanCode.iml" filepath="$PROJECT_DIR$/DataStructure/Tree/HuffmanCode/HuffmanCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Tree/HuffmanTree/HuffmanTree.iml" filepath="$PROJECT_DIR$/DataStructure/Tree/HuffmanTree/HuffmanTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/InsertSort/InsertSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/InsertSort/InsertSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Search/InsertValueSearch/InsertValueSearch.iml" filepath="$PROJECT_DIR$/Algorithm/Search/InsertValueSearch/InsertValueSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/KMP/KMPAlgorithm/KMPAlgorithm.iml" filepath="$PROJECT_DIR$/Algorithm/KMP/KMPAlgorithm/KMPAlgorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/KruskalAlgorithm/KruskalAlgorithm.iml" filepath="$PROJECT_DIR$/Algorithm/KruskalAlgorithm/KruskalAlgorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/DataStructure/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/MergeSort/MergeSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/MergeSort/MergeSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/PrimAlgorithm/PrimAlgorithm.iml" filepath="$PROJECT_DIR$/Algorithm/PrimAlgorithm/PrimAlgorithm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Queue/Queue.iml" filepath="$PROJECT_DIR$/DataStructure/Queue/Queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/QuickSort/QuickSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/QuickSort/QuickSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Recursive/Recursive.iml" filepath="$PROJECT_DIR$/Algorithm/Recursive/Recursive.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/RedixSort/RedixSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/RedixSort/RedixSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/SelectSort/SelectSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/SelectSort/SelectSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Search/SequenceSearch/SequenceSearch.iml" filepath="$PROJECT_DIR$/Algorithm/Search/SequenceSearch/SequenceSearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/ShellSort/ShellSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/ShellSort/ShellSort.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/Stack/Stack.iml" filepath="$PROJECT_DIR$/DataStructure/Stack/Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DataStructure/String_/String_.iml" filepath="$PROJECT_DIR$/DataStructure/String_/String_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/KMP/ViolenceMatch/ViolenceMatch.iml" filepath="$PROJECT_DIR$/Algorithm/KMP/ViolenceMatch/ViolenceMatch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Algorithm/Sorting/heapSort/heapSort.iml" filepath="$PROJECT_DIR$/Algorithm/Sorting/heapSort/heapSort.iml" />
+    </modules>
+  </component>
+</project>
