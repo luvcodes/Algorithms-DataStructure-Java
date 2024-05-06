@@ -15,7 +15,8 @@ import java.util.List;
  */
 public class YanghuiTriangle {
     public static void main(String[] args) {
-
+        int numRows = 3;
+        System.out.println(generate(numRows));
     }
 
     public static List<List<Integer>> generate(int numRows) {
@@ -29,7 +30,7 @@ public class YanghuiTriangle {
             // 用这个循环来进行遍历当前行的所包括的元素，j <= i的条件是为了保证每增加一行，循环的次数就增加一次，
             // 确保每行有正确数量的元素，这些元素的索引也从0开始，递增到行号 i。
             // 这种循环结构确保了每一行能正确地填充其元素。
-            for (int j = 0; j < i; j++) {
+            for (int j = 0; j <= i; j++) {
                 // 判断当前元素所在的位置是中间还是两端，两端直接加一
                 if (j == 0 || j == i) {
                     row.add(1);
