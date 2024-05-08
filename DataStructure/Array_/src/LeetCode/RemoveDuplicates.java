@@ -10,24 +10,23 @@ public class RemoveDuplicates {
     public static void main(String[] args) {
 
     }
+
     /**
      * 解法一: 双指针
      * 这种方法的核心是在于，因为我们想要将新的数组就放置在原始数组的位置，所以核心的步骤就是在于nums[left] = nums[right];
      * 这样做，就可以让右指针一直向右移动的过程中，不断判断，然后看是不是要放到左指针所在的位置
      * 那么最终返回 left，就是因为，左指针指向的元素以及其左边的元素就是最终想要的数组的长度。
      * */
-    public static int removeDuplicates(int[] nums, int val) {
-        int left = 0;
-        int len = nums.length - 1;
-
-        for (int right = 0; right < len; right++) {
-            if (nums[right] != val) {
-                nums[left] = nums[right];
-                left++;
+    private static int removeDuplicates(int[] nums, int val) {
+        int slowPointer = 0;
+        for (int fastPointer = 0; fastPointer < nums.length; fastPointer++) {
+            if (nums[fastPointer] != val) {
+                nums[slowPointer] = nums[fastPointer];
+                slowPointer++;
             }
         }
 
-        return left;
+        return slowPointer;
     }
 
     /**
