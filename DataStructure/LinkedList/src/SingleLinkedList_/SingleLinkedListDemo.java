@@ -2,6 +2,9 @@ package SingleLinkedList_;
 
 import java.util.Stack;
 
+/**
+ * @author yangrunze
+ */
 public class SingleLinkedListDemo {
     public static void main(String[] args) {
         HeroNode heroNode1 = new HeroNode(1, "hero1", "heronickname1");
