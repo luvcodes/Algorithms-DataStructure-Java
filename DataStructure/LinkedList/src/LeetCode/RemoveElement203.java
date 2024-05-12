@@ -117,8 +117,10 @@ public class RemoveElement203 {
 }
 
 class ListNode {
-    int val; // 节点存储的数值
-    ListNode next; // 指向下一个节点的引用
+    // 节点存储的数值
+    int val;
+    // 指向下一个节点的引用
+    ListNode next;
 
     // 默认构造函数，用于创建值为0的节点，没有后续节点
     ListNode() {}
