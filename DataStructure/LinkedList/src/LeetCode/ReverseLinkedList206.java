@@ -80,7 +80,7 @@ public class ReverseLinkedList206 {
 
 
 // 定义链表节点类
-class ListNode {
+/*class ListNode {
     int value;
     ListNode next;
 
@@ -89,4 +89,4 @@ class ListNode {
         this.value = value;
         this.next = null;
     }
-}
+}*/
