@@ -7,7 +7,7 @@ package LeetCode;
  */
 public class FormALinkedList707 {
     public static void main(String[] args) {
-
+        
     }
 }
 
