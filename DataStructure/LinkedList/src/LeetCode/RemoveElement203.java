@@ -11,16 +11,16 @@ public class RemoveElement203 {
 
     }
 
-    public ListNode removeElements(ListNode head, int val) {
+    /*public ListNode1 removeElements(ListNode1 head, int val) {
         // 判断当前节点是否为null
         if (head == null) {
             return head;
         }
 
         // 设置头节点前面的虚节点
-        ListNode dummy = new ListNode(-1, head);
-        ListNode preNode = dummy;
-        ListNode currentNode = head;
+        ListNode1 dummy = new ListNode1(-1, head);
+        ListNode1 preNode = dummy;
+        ListNode1 currentNode = head;
 
         while (currentNode != null) {
             if (currentNode.val == val) {
@@ -36,7 +36,7 @@ public class RemoveElement203 {
 
         // 直接返回dummy节点的下一个节点就是结果所需要的新的头节点
         return dummy.next;
-    }
+    }*/
 
     // /**
     // * 添加虚节点方式
@@ -46,14 +46,14 @@ public class RemoveElement203 {
     // * @param val
     // * @return
     // */
-    // public ListNode removeElements(ListNode head, int val) {
+    // public ListNode1 removeElements(ListNode1 head, int val) {
     //     if (head == null) {
     //         return head;
     //     }
     //     // 因为删除可能涉及到头节点，所以设置dummy节点，统一操作
-    //     ListNode dummy = new ListNode(-1, head);
-    //     ListNode pre = dummy;
-    //     ListNode cur = head;
+    //     ListNode1 dummy = new ListNode1(-1, head);
+    //     ListNode1 pre = dummy;
+    //     ListNode1 cur = head;
     //     while (cur != null) {
     //         if (cur.val == val) {
     //             pre.next = cur.next;
@@ -72,7 +72,7 @@ public class RemoveElement203 {
     // * @param val
     // * @return
     // */
-    // public ListNode removeElements(ListNode head, int val) {
+    // public ListNode1 removeElements(ListNode1 head, int val) {
     //     while (head != null && head.val == val) {
     //         head = head.next;
     //     }
@@ -81,8 +81,8 @@ public class RemoveElement203 {
     //         return head;
     //     }
     //     // 已确定当前head.val != val
-    //     ListNode pre = head;
-    //     ListNode cur = head.next;
+    //     ListNode1 pre = head;
+    //     ListNode1 cur = head.next;
     //     while (cur != null) {
     //         if (cur.val == val) {
     //             pre.next = cur.next;
@@ -101,11 +101,11 @@ public class RemoveElement203 {
     // * @param val
     // * @return
     // */
-    // public ListNode removeElements(ListNode head, int val) {
+    // public ListNode1 removeElements(ListNode1 head, int val) {
     //     while(head!=null && head.val==val){
     //         head = head.next;
     //     }
-    //     ListNode curr = head;
+    //     ListNode1 curr = head;
     //     while(curr!=null){
     //         while(curr.next!=null && curr.next.val == val){
     //             curr.next = curr.next.next;
@@ -116,11 +116,11 @@ public class RemoveElement203 {
     // }
 }
 
-class ListNode {
+/*class ListNode {
     // 节点存储的数值
     int val;
     // 指向下一个节点的引用
-    ListNode next;
+    ListNode1 next;
 
     // 默认构造函数，用于创建值为0的节点，没有后续节点
     ListNode() {}
@@ -132,8 +132,8 @@ class ListNode {
     }
 
     // 构造函数，用于创建一个给定值的节点，并指定后续节点
-    ListNode(int val, ListNode next) {
+    ListNode(int val, ListNode1 next) {
         this.val = val;
         this.next = next;
     }
-}
+}*/

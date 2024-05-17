@@ -14,7 +14,7 @@ public class FormALinkedList707 {
 // 单链表
 class ListNode1 {
     int val;
-    ListNode next;
+    ListNode1 next;
 
     ListNode1() {
     }
@@ -28,12 +28,12 @@ class MyLinkedList {
     //size存储链表元素的个数
     int size;
     //虚拟头结点
-    ListNode head;
+    ListNode1 head;
 
     //初始化链表
     public MyLinkedList() {
         size = 0;
-        head = new ListNode(0);
+        head = new ListNode1(0);
     }
 
     //获取第index个节点的数值，注意index是从0开始的，第0个节点就是头结点
@@ -44,7 +44,7 @@ class MyLinkedList {
         }
 
         // 虚拟头节点
-        ListNode currentNode = head;
+        ListNode1 currentNode = head;
         // 遍历到第index个实际节点，注意从head开始已经有一个虚拟头节点，所以需要遍历index次
         for (int i = 0; i < index; i++) {
             currentNode = currentNode.next;
@@ -76,11 +76,11 @@ class MyLinkedList {
         }
         size++;
         //找到要插入节点的前驱
-        ListNode pred = head;
+        ListNode1 pred = head;
         for (int i = 0; i < index; i++) {
             pred = pred.next;
         }
-        ListNode toAdd = new ListNode(val);
+        ListNode1 toAdd = new ListNode1(val);
         toAdd.next = pred.next;
         pred.next = toAdd;
     }
@@ -95,7 +95,7 @@ class MyLinkedList {
             head = head.next;
             return;
         }
-        ListNode pred = head;
+        ListNode1 pred = head;
         for (int i = 0; i < index; i++) {
             pred = pred.next;
         }
@@ -106,14 +106,14 @@ class MyLinkedList {
 /**
  * 双链表
  */
-/*class ListNode {
+/*class ListNode1 {
     int val;
-    ListNode next, prev;
+    ListNode1 next, prev;
 
-    ListNode() {
+    ListNode1() {
     }
 
-    ListNode(int val) {
+    ListNode1(int val) {
         this.val = val;
     }
 }
@@ -124,13 +124,13 @@ class MyLinkedList {
     //记录链表中元素的数量
     int size;
     //记录链表的虚拟头结点和尾结点
-    ListNode head, tail;
+    ListNode1 head, tail;
 
     public MyLinkedList() {
         //初始化操作
         this.size = 0;
-        this.head = new ListNode(0);
-        this.tail = new ListNode(0);
+        this.head = new ListNode1(0);
+        this.tail = new ListNode1(0);
         //这一步非常关键，否则在加入头结点的操作中会出现null.next的错误！！！
         head.next = tail;
         tail.prev = head;
@@ -141,7 +141,7 @@ class MyLinkedList {
         if (index < 0 || index >= size) {
             return -1;
         }
-        ListNode cur = this.head;
+        ListNode1 cur = this.head;
         //判断是哪一边遍历时间更短
         if (index >= size / 2) {
             //tail开始
@@ -178,12 +178,12 @@ class MyLinkedList {
         }
         size++;
         //找到前驱
-        ListNode pre = this.head;
+        ListNode1 pre = this.head;
         for (int i = 0; i < index; i++) {
             pre = pre.next;
         }
         //新建结点
-        ListNode newNode = new ListNode(val);
+        ListNode1 newNode = new ListNode1(val);
         newNode.next = pre.next;
         pre.next.prev = newNode;
         newNode.prev = pre;
@@ -198,7 +198,7 @@ class MyLinkedList {
         }
         //删除操作
         size--;
-        ListNode pre = this.head;
+        ListNode1 pre = this.head;
         for (int i = 0; i < index; i++) {
             pre = pre.next;
         }
