@@ -1,4 +1,4 @@
-package SingleLinkedList_;
+package Learning.SingleLinkedList_;
 
 import java.util.Stack;
 
@@ -305,7 +305,7 @@ class HeroNode {
 
     @Override
     public String toString() {
-        return "SingleLinkedList_.HeroNode{" +
+        return "Learning.SingleLinkedList_.HeroNode{" +
                 "no=" + no +
                 ", name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' + '}';

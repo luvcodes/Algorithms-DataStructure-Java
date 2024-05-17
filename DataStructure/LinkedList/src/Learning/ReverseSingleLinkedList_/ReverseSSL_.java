@@ -1,4 +1,4 @@
-package ReverseSingleLinkedList_;
+package Learning.ReverseSingleLinkedList_;
 
 /**
  * @author yangrunze

@@ -1,4 +1,4 @@
-package DoubleLinkedList_;
+package Learning.DoubleLinkedList_;
 
 
 /**
@@ -194,7 +194,7 @@ class HeroNode2 {
 
     @Override
     public String toString() {
-        return "SingleLinkedList_.HeroNode{" +
+        return "Learning.SingleLinkedList_.HeroNode{" +
                 "no=" + no +
                 ", name='" + name + '\'' +
                 ", nickname='" + nickname + '\'' + '}';

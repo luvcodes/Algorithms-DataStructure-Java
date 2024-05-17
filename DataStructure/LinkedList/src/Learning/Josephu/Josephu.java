@@ -1,4 +1,4 @@
-package Josephu;
+package Learning.Josephu;
 
 public class Josephu {
     public static void main(String[] args) {
