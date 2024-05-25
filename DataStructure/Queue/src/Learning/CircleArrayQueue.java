@@ -1,3 +1,5 @@
+package Learning;
+
 import java.util.Scanner;
 
 public class CircleArrayQueue {

@@ -1,4 +1,5 @@
-import java.sql.Array;
+package Learning;
+
 import java.util.Scanner;
 
 /**

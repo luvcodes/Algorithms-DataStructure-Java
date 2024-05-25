@@ -1,4 +1,4 @@
-package commonUsage_;
+package Learning.commonUsage_;
 
 import java.util.LinkedList;
 import java.util.Queue;
