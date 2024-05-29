@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Tree/AVLTreeDemo/AVLTreeDemo.iml" filepath="$PROJECT_DIR$/Tree/AVLTreeDemo/AVLTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Array_/Array_.iml" filepath="$PROJECT_DIR$/Array_/Array_.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree/BInarySearchTreeDemo/BInarySearchTreeDemo.iml" filepath="$PROJECT_DIR$/Tree/BInarySearchTreeDemo/BInarySearchTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree/BinaryTreeDemo/BinaryTreeDemo.iml" filepath="$PROJECT_DIR$/Tree/BinaryTreeDemo/BinaryTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/DataStructure.iml" filepath="$PROJECT_DIR$/.idea/DataStructure.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Graph/Graph.iml" filepath="$PROJECT_DIR$/Graph/Graph.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HashTable/HashTable.iml" filepath="$PROJECT_DIR$/HashTable/HashTable.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree/HuffmanCode/HuffmanCode.iml" filepath="$PROJECT_DIR$/Tree/HuffmanCode/HuffmanCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Tree/HuffmanTree/HuffmanTree.iml" filepath="$PROJECT_DIR$/Tree/HuffmanTree/HuffmanTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LinkedList/LinkedList.iml" filepath="$PROJECT_DIR$/LinkedList/LinkedList.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Queue/Queue.iml" filepath="$PROJECT_DIR$/Queue/Queue.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Stack/Stack.iml" filepath="$PROJECT_DIR$/Stack/Stack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/String_/String_.iml" filepath="$PROJECT_DIR$/String_/String_.iml" />
+    </modules>
+  </component>
+</project>
