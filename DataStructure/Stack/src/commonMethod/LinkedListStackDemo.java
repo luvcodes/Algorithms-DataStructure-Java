@@ -1,3 +1,5 @@
+package commonMethod;
+
 import java.util.Scanner;
 
 /**
@@ -115,7 +117,7 @@ class Node {
 
     @Override
     public String toString() {
-        return "Node{" +
+        return "commonMethod.Node{" +
                 "next=" + next +
                 ", value=" + value +
                 '}';

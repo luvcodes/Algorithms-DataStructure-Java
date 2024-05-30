@@ -1,3 +1,5 @@
+package commonMethod;
+
 /**
  * @author ryanw
  */

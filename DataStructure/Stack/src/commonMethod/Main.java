@@ -2,6 +2,10 @@ package commonMethod;
 
 import java.util.Stack;
 
+/**
+ * @author yangrunze
+ * Java 内置的 Stack 类
+ */
 public class Main {
     public static void main(String[] args) {
         Stack<Object> s = new Stack<>();
