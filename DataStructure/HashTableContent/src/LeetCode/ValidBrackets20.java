@@ -7,19 +7,15 @@ import java.util.Map;
 
 /**
  * @author yangrunze
- * LeetCode20:https://leetcode.cn/problems/valid-parentheses/description/
- * 有效的括号
  */
 public class ValidBrackets20 {
-    public static void main(String[] args) {
-        ValidBrackets20 brackets = new ValidBrackets20();
-        // true
-        System.out.println(brackets.isValid("()[]{}"));
-        // false
-        System.out.println(brackets.isValid("([)]"));
-        // true
-        System.out.println(brackets.isValid("{[]}"));
-    }
+
+    // public static void main(String[] args) {
+    //     Solution solution = new Solution();
+    //     System.out.println(solution.isValid("()[]{}")); // true
+    //     System.out.println(solution.isValid("([)]"));   // false
+    //     System.out.println(solution.isValid("{[]}"));   // true
+    // }
 
     /**
      * 方法一: 使用 HashMap 来作为辅助实现
@@ -36,7 +32,9 @@ public class ValidBrackets20 {
 
     public boolean isValid(String s) {
         // 右括号不能出现在字符串的第一个位置，否则它无法匹配任何左括号，这样的字符串显然不可能是有效的括号字符串。
-        if (s.length() > 0 && !map.containsKey(s.charAt(0))) return false;
+        if (s.length() > 0 && !map.containsKey(s.charAt(0))) {
+            return false;
+        }
 
         // 添加一个问号到栈中
         LinkedList<Character> stack = new LinkedList<>();
@@ -54,7 +52,9 @@ public class ValidBrackets20 {
                 // 不是左括号
                 // removeLast 移除栈中的最后一个括号，这应该是最右边的左括号
                 // 判断这个左括号所对应的右括号是否等于当前字符，不等，直接 false; 相等，就移除了这个左括号。
-                if (map.get(stack.removeLast()) != c) return false;
+                if (map.get(stack.removeLast()) != c) {
+                    return false;
+                }
             }
         }
 
@@ -63,21 +63,15 @@ public class ValidBrackets20 {
         return stack.size() == 1;
     }
 
-    // public static void main(String[] args) {
-    //     Solution solution = new Solution();
-    //     System.out.println(solution.isValid("()[]{}")); // true
-    //     System.out.println(solution.isValid("([)]"));   // false
-    //     System.out.println(solution.isValid("{[]}"));   // true
-    // }
-}
 
-/**
- * 方法的核心逻辑就是通过指针来逐个将当前左括号所对应的右括号添加到栈内，
- * 当第一次碰到右括号的时候，检查这个右括号是否与栈顶元素相等，如果相等则弹出，说明匹配上了。
- * 这个逻辑就是因为压到栈内的都是右括号，一旦栈顶的元素与当前要压入的右括号相等，其实就证明有对应的左括号存在。
- * */
-class Solution {
-    public boolean isValid(String s) {
+
+    /**
+     * 方法二
+     * 方法的核心逻辑就是通过指针来逐个将当前左括号所对应的右括号添加到栈内，
+     * 当第一次碰到右括号的时候，检查这个右括号是否与栈顶元素相等，如果相等则弹出，说明匹配上了。
+     * 这个逻辑就是因为压到栈内的都是右括号，一旦栈顶的元素与当前要压入的右括号相等，其实就证明有对应的左括号存在。
+     * */
+    /*public boolean isValid(String s) {
         Deque<Character> deque = new LinkedList<>();
         char ch;
 
@@ -100,5 +94,5 @@ class Solution {
 
         // 判断栈中元素是否匹配
         return deque.isEmpty();
-    }
+    }*/
 }
