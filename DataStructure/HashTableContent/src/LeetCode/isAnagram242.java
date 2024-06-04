@@ -4,7 +4,6 @@ package LeetCode;
  * @author ryanw
  * Leetcode242: https://leetcode.cn/problems/valid-anagram/description/
  * 看是否两个string是anagram
- * 多种方法
  */
 public class isAnagram242 {
     public static void main(String[] args) {
