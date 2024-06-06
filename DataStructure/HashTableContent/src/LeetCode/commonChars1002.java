@@ -6,6 +6,7 @@ import java.util.List;
 /**
  * @author yangrunze
  * LeetCode1002: https://leetcode.cn/problems/find-common-characters/description/
+ * 查找字符串数组中多个元素的共有字符
  */
 public class commonChars1002 {
     public static void main(String[] args) {
