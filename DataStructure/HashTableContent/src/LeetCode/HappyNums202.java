@@ -7,9 +7,7 @@ import java.util.Set;
  * @author yangrunze
  */
 public class HappyNums202 {
-    public static void main(String[] args) {
-
-    }
+    public static void main(String[] args) {}
 
     private int getNext(int n) {
         int totalSum = 0;
