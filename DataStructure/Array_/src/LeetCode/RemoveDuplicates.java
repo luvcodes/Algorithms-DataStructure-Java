@@ -54,6 +54,7 @@ public class RemoveDuplicates {
 
     /**
      * 相向双指针，交换移除
+     * 这种解法在力扣上出现问题，就是超出时间限制，复杂度很高
      * */
     private static int removeDuplicates3(int[] nums, int val) {
         int ans = nums.length;
