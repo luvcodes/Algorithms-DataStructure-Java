@@ -4,7 +4,7 @@ package LeetCode;
  * @author ryanw
  * LeetCode704: 二分查找 https://leetcode.cn/problems/binary-search/description/
  */
-public class BasicBinarySearch {
+public class BasicBinarySearch704 {
     public static void main(String[] args) {
         int[] nums = new int[]{1,2,3,4,5,6,7,8,9};
         int target = 9;
