@@ -17,11 +17,13 @@ public class RemoveDuplicates27 {
      * 这种方法的核心是在于，因为我们想要将新的数组就放置在原始数组的位置，所以核心的步骤就是在于nums[left] = nums[right];
      * 这样做，就可以让右指针一直向右移动的过程中，不断判断，然后看是不是要放到左指针所在的位置
      * 最终返回 left 就是正确的结果。因为左指针指向的元素以及其左边的元素就是最终想要的数组的长度。
+     * 这样做的核心原因主要是在于，我们最终想要的是移除目标元素之后的数组。
      * */
     private static int removeDuplicates(int[] nums, int val) {
         int slowPointer = 0;
         for (int fastPointer = 0; fastPointer < nums.length; fastPointer++) {
             if (nums[fastPointer] != val) {
+                // 这其实就是在做移除操作，就是后面的元素覆盖前面的元素
                 nums[slowPointer] = nums[fastPointer];
                 slowPointer++;
             }
