@@ -6,7 +6,7 @@ package LeetCode;
  * 示例1: 输入：nums = [3,2,2,3], val = 3 输出：2, nums = [2,2]
  * 示例2: 输入：nums = [0,1,2,2,3,0,4,2], val = 2 输出：5, nums = [0,1,3,0,4]
  */
-public class RemoveDuplicates27 {
+public class RemoveDuplicates27_2 {
 
     public static void main(String[] args) {
 

@@ -12,7 +12,7 @@ import java.util.Arrays;
  * 解释：平方后，数组变为 [16,1,0,9,100]
  * 排序后，数组变为 [0,1,9,16,100]
  */
-public class SquareSortedArray977 {
+public class SquareSortedArray977_3 {
     public static void main(String[] args) {
         int[] num = {-4, -1, 0, 3, 10};
         System.out.println(Arrays.toString(sortedSquares2(num)));
