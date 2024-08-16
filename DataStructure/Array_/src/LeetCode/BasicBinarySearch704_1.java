@@ -2,7 +2,7 @@ package LeetCode;
 
 /**
  * @author ryanw
- * LeetCode704: 二分查找 https://leetcode.cn/problems/binary-search/description/
+ * LeetCode704: 二分查找
  */
 public class BasicBinarySearch704_1 {
     public static void main(String[] args) {
