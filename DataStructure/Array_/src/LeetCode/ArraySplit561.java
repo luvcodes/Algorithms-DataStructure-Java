@@ -11,7 +11,7 @@ import java.util.Arrays;
  * 我们实际上选择的是每一对中较小的数。
  * 这是题目设计的一个巧妙之处，确保你总是取到每一对中较小的那个数来相加。
  */
-public class ArraySplit {
+public class ArraySplit561 {
     public static void main(String[] args) {
         int[] arr = {2,4,6,4,3};
         System.out.println(arrayPairSum(arr));

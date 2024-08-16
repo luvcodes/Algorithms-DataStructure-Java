@@ -6,6 +6,7 @@ package LeetCode;
  * 请必须使用时间复杂度为 O(log n) 的算法。
  * @author yangrunze
  */
+@SuppressWarnings("all")
 public class SearchInsertPos {
     public static void main(String[] args) {
         searchInsert(new int[]{1, 2, 3}, 0);
