@@ -22,7 +22,7 @@ import java.util.Scanner;
  * 9
  * */
 @SuppressWarnings("all")
-public class PrefixSum_5 {
+public class _5PrefixSum {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);

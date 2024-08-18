@@ -7,7 +7,7 @@ package LeetCode;
  * 输出：2
  * 解释：子数组 [4,3] 是该条件下的长度最小的子数组。
  * */
-public class MinChildArr209_4 {
+public class _4MinChildArr209 {
     public static void main(String[] args) {
         int[] nums = {1,2,2,1};
         int target = 1;

@@ -2,11 +2,11 @@ package LeetCode;
 
 /**
  * @author yangrunze
- * LeetCode59:https://leetcode.cn/problems/spiral-matrix-ii/description/
+ * LeetCode59
  * 给你一个正整数n，生成一个包含 1 到 n2 所有元素，
  * 且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix 。
  */
-public class SpiralMatrixII59 {
+public class _6SpiralMatrixII59 {
     public static void main(String[] args) {
         int[][] nums = generateMatrix(3);
 
