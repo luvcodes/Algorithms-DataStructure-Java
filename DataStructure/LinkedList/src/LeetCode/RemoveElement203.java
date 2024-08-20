@@ -1,9 +1,8 @@
 package LeetCode;
 
-
 /**
  * @author yangrunze
- * LeetCode203: https://leetcode.cn/problems/remove-linked-list-elements/
+ * LeetCode203 移除链表节点
  * 给你一个链表的头节点 head 和一个整数 val ，请你删除链表中所有满足 Node.val == val 的节点，并返回新的头节点 。
  */
 public class RemoveElement203 {
@@ -11,35 +10,47 @@ public class RemoveElement203 {
 
     }
 
-    /*public ListNode1 removeElements(ListNode1 head, int val) {
-        // 判断当前节点是否为null
-        if (head == null) {
-            return head;
-        }
+    /**
+     * 有三种方法解决：
+     * 1. 在同一个链表中直接实现删除节点操作
+     * 2. 添加头结点的方式
+     * 3. 使用递归的方式
+     * */
 
-        // 设置头节点前面的虚节点
-        ListNode1 dummy = new ListNode1(-1, head);
-        ListNode1 preNode = dummy;
-        ListNode1 currentNode = head;
+    // 方式一:
+    // /**
+    // * 不添加虚拟节点也不使用pre Node方式，即在当前链表中直接实现删除
+    // * 时间复杂度 O(n)
+    // * 空间复杂度 O(1)
+    // * @param head
+    // * @param val
+    // * @return
+    // */
+    //    public ListNode1 removeElements(ListNode head, int val) {
+    //        // 判断初始状态，是否当前输入的就是需要删除的节点
+    //        while (head != null && head.val == val) {
+    //            head = head.next;
+    //        }
+    //
+    //        // 设置指针指向当前节点
+    //        ListNode1 currNode = head;
+    //
+    //        // 开始移除操作, 删除中间的节点 (不是头和尾)
+    //        while (currNode != null && currNode.next != null) {
+    //            if (currNode.next.val == val) {
+    //                currNode.next = currNode.next.next;
+    //            } else {
+    //                // 向后移一位指针
+    //                currNode = currNode.next;
+    //            }
+    //        }
+    //
+    //        return head;
+    //    }
 
-        while (currentNode != null) {
-            if (currentNode.val == val) {
-                // 移除当前节点
-                preNode.next = currentNode.next;
-            } else {
-                // preNode指向当前节点，也就是往后移动了一位
-                preNode = currentNode;
-            }
-            // 移动当前节点的指针向后一位
-            currentNode = currentNode.next;
-        }
-
-        // 直接返回dummy节点的下一个节点就是结果所需要的新的头节点
-        return dummy.next;
-    }*/
 
     // /**
-    // * 添加虚节点方式
+    // * 第二种方式：添加头节点方式
     // * 时间复杂度 O(n)
     // * 空间复杂度 O(1)
     // * @param head
@@ -62,10 +73,14 @@ public class RemoveElement203 {
     //         }
     //         cur = cur.next;
     //     }
+
+    // 最终需要的是返回新链表的头节点
     //     return dummy.next;
     // }
+
+
     // /**
-    // * 不添加虚拟节点方式
+    // * 第三种方式：递归的方式，不添加虚拟节点
     // * 时间复杂度 O(n)
     // * 空间复杂度 O(1)
     // * @param head
@@ -93,27 +108,8 @@ public class RemoveElement203 {
     //     }
     //     return head;
     // }
-    // /**
-    // * 不添加虚拟节点and pre Node方式
-    // * 时间复杂度 O(n)
-    // * 空间复杂度 O(1)
-    // * @param head
-    // * @param val
-    // * @return
-    // */
-    // public ListNode1 removeElements(ListNode1 head, int val) {
-    //     while(head!=null && head.val==val){
-    //         head = head.next;
-    //     }
-    //     ListNode1 curr = head;
-    //     while(curr!=null){
-    //         while(curr.next!=null && curr.next.val == val){
-    //             curr.next = curr.next.next;
-    //         }
-    //         curr = curr.next;
-    //     }
-    //     return head;
-    // }
+
+
 }
 
 /*class ListNode {
