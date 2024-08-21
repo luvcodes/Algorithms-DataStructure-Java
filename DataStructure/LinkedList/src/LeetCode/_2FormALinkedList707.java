@@ -5,7 +5,7 @@ package LeetCode;
  * LeetCode707: https://leetcode.cn/problems/design-linked-list/description/
  * 选择使用单链表或者双链表，设计并实现自己的链表。
  */
-public class FormALinkedList707 {
+public class _2FormALinkedList707 {
     public static void main(String[] args) {
         
     }

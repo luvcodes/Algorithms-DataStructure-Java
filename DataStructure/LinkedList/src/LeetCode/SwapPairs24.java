@@ -2,7 +2,7 @@ package LeetCode;
 
 /**
  * @author yangrunze
- * LeetCode24: https://leetcode.cn/problems/swap-nodes-in-pairs/description/
+ * LeetCode24
  */
 public class SwapPairs24 {
     public static void main(String[] args) {
@@ -22,36 +22,8 @@ public class SwapPairs24 {
 
         return next;
     }
-}
 
-// 定义链表节点类
-class ListNode {
-    int value;
-    ListNode next;
-
-    // 构造函数
-    ListNode(int value) {
-        this.value = value;
-        this.next = null;
-    }
-}
-
-
-/*// 定义链表节点类
-class ListNode {
-    int value;
-    ListNode next;
-
-    // 构造函数
-    ListNode(int value) {
-        this.value = value;
-        this.next = null;
-    }
-}
-
-public class SwapPairs {
-
-    // 两两交换链表中的节点
+    /*// 两两交换链表中的节点
     public ListNode swapPairs(ListNode head) {
         // 创建一个哑节点
         ListNode dummy = new ListNode(0);
@@ -72,9 +44,9 @@ public class SwapPairs {
             current = first;
         }
         return dummy.next;
-    }
+    }*/
 
-    // 辅助方法：打印链表
+    /*// 辅助方法：打印链表
     public void printList(ListNode head) {
         ListNode current = head;
         while (current != null) {
@@ -100,5 +72,23 @@ public class SwapPairs {
         ListNode swappedHead = solution.swapPairs(head);
         System.out.println("两两交换后的链表:");
         solution.printList(swappedHead);
+    }*/
+}
+
+class ListNode {
+    int value;
+    ListNode next;
+
+    // 默认构造函数，用于创建值为0的节点，没有后续节点
+    ListNode() {}
+    // 构造函数，用于创建一个给定值的节点，没有后续节点
+    ListNode(int value) {
+        this.value = value;
+        this.next = null;
     }
-}*/
+    // 构造函数，用于创建一个给定值的节点，并指定后续节点
+    ListNode(int value, ListNode next) {
+        this.value = value;
+        this.next = next;
+    }
+}
