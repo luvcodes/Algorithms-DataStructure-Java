@@ -89,5 +89,4 @@ public class _1RemoveElement203 {
         return dummy.next;
     }
 
-
 }

@@ -6,32 +6,27 @@ package LeetCode;
  */
 @SuppressWarnings("all")
 public class _2GenerateLinkedList707 {
-    public static void main(String[] args) {
-    }
+    public static void main(String[] args) {}
 }
 
 class MyLinkedList {
-    // size存储链表元素的个数
-    int size;
-    // 虚拟头结点
-    ListNode head;
+    int size;  // 存储链表元素的个数
+    ListNode head;  // 虚拟头节点
 
     // 初始化链表
     public MyLinkedList() {
         size = 0;
-        head = new ListNode(0);
+        head = new ListNode(0);  // 虚拟头节点
     }
 
     // 获取第index个节点的数值，注意index是从0开始的，第0个节点就是头结点
     public int get(int index) {
-        // 如果index非法，返回-1
         if (index < 0 || index >= size) {
-            return -1;
+            return -1;  // 如果index非法，返回-1
         }
 
         ListNode currentNode = head;
-
-        // 包含一个虚拟头节点，所以查找第 index+1 个节点
+        // 包含虚拟头节点，查找第 index+1 个节点
         for (int i = 0; i <= index; i++) {
             currentNode = currentNode.next;
         }
@@ -49,25 +44,17 @@ class MyLinkedList {
         addAtIndex(size, val);
     }
 
-    // 在第 index 个节点之前插入一个新节点，例如index为0，那么新插入的节点为链表的新头节点。
-    // 如果 index 等于链表的长度，则说明是新插入的节点为链表的尾结点
-    // 如果 index 大于链表的长度，则返回空
+    // 在第 index 个节点之前插入一个新节点
     public void addAtIndex(int index, int val) {
         if (index > size) {
-            return;
+            return;  // 如果index大于链表长度，返回空
         }
         if (index < 0) {
             index = 0;
         }
-        // 扩大链表容量
-        size++;
+        size++;  // 扩大链表容量
 
-        // 找到要插入节点的前驱
-        ListNode pred = head;
-        for (int i = 0; i < index; i++) {
-            pred = pred.next;
-        }
-
+        ListNode pred = findPred(index);  // 找到要插入节点的前驱
         ListNode toAdd = new ListNode(val);
         toAdd.next = pred.next;
         pred.next = toAdd;
@@ -76,20 +63,24 @@ class MyLinkedList {
     // 删除第index个节点
     public void deleteAtIndex(int index) {
         if (index < 0 || index >= size) {
-            return;
+            return;  // 如果index非法，返回
         }
-        size--;
-        if (index == 0) {
-            head = head.next;
-            return;
-        }
+        size--;  // 减少链表容量
+
+        ListNode pred = findPred(index);  // 找到要删除节点的前驱
+        pred.next = pred.next.next;
+    }
+
+    // 查找给定索引的前驱节点
+    private ListNode findPred(int index) {
         ListNode pred = head;
         for (int i = 0; i < index; i++) {
             pred = pred.next;
         }
-        pred.next = pred.next.next;
+        return pred;
     }
 }
+
 
 /**
  * 双链表
