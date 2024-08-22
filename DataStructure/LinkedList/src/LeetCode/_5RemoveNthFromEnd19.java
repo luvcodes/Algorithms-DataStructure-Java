@@ -3,7 +3,7 @@ package LeetCode;
 /**
  * @author yangrunze
  */
-public class RemoveNthFromEnd19 {
+public class _5RemoveNthFromEnd19 {
     public static void main(String[] args) {
 
     }

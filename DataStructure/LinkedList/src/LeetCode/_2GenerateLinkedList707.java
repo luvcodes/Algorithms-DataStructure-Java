@@ -52,12 +52,24 @@ class MyLinkedList {
         if (index < 0) {
             index = 0;
         }
-        size++;  // 扩大链表容量
 
-        ListNode pred = findPred(index);  // 找到要插入节点的前驱
+        // 扩大链表容量
+        size++;
+
+        // 找到要插入节点的前驱
+        ListNode pred = findPred(index);
         ListNode toAdd = new ListNode(val);
         toAdd.next = pred.next;
         pred.next = toAdd;
+    }
+
+    // 查找给定索引的前驱节点
+    private ListNode findPred(int index) {
+        ListNode pred = head;
+        for (int i = 0; i < index; i++) {
+            pred = pred.next;
+        }
+        return pred;
     }
 
     // 删除第index个节点
@@ -71,14 +83,7 @@ class MyLinkedList {
         pred.next = pred.next.next;
     }
 
-    // 查找给定索引的前驱节点
-    private ListNode findPred(int index) {
-        ListNode pred = head;
-        for (int i = 0; i < index; i++) {
-            pred = pred.next;
-        }
-        return pred;
-    }
+
 }
 
 

@@ -66,6 +66,7 @@ public class _1RemoveElement203 {
     }
 
 
+    // 这种方法不需要再判断头节点是否为目标值了，因为设置了dummy节点可以统一处理所有的节点
     private static ListNode removeDuplicates3(ListNode head, int val) {
         // 判断head是否为null
         if (head == null) {return head;}
