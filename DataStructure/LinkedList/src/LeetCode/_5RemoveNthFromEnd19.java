@@ -36,6 +36,5 @@ public class _5RemoveNthFromEnd19 {
         }
 
         return dummyNode.next;
-
     }
 }
