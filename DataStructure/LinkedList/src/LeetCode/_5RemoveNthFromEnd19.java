@@ -2,44 +2,40 @@ package LeetCode;
 
 /**
  * @author yangrunze
+ * LeetCode19: 移除倒数第n个节点形成新链表，并返回
  */
 public class _5RemoveNthFromEnd19 {
-    public static void main(String[] args) {
+    public static void main(String[] args) {}
 
-    }
-}
-
-class Solution {
+    // 快慢指针解法
     public ListNode removeNthFromEnd(ListNode head, int n) {
-        // 核心代码逻辑是快慢指针。快指针直接移动n + 1个位置，
-        // 然后慢指针和快指针同样速度向后移动，直到快指针指向的是链表最后一个节点的后面
-
-        // 设置虚拟头节点
+        // 1. 设置虚拟头节点
         ListNode dummyNode = new ListNode(0);
+        dummyNode.next = head;
+        ListNode fastPointer = dummyNode;
+        ListNode slowPointer = dummyNode;
 
-        // 设置快慢指针
-        ListNode fastIndex = dummyNode;
-        ListNode slowIndex = dummyNode;
-
-        // 核心逻辑从这里开始：
-        // 快指针先向后移动n个位置
+        // 2. 快指针先开始移动到第n+1个节点，也就是index值为n的位置
+        // 只要快慢指针相差 n 个结点即可
         for (int i = 0; i <= n; i++) {
-            fastIndex = fastIndex.next;
+            fastPointer = fastPointer.next;
         }
 
-        // 快慢指针开始同步移动
-        while (fastIndex != null) {
-            slowIndex = slowIndex.next;
-            fastIndex = fastIndex.next;
+        // 3. 再将慢指针与快指针同时移动，直到快指针指向null
+        while (fastPointer != null) {
+            fastPointer = fastPointer.next;
+            slowPointer = slowPointer.next;
         }
 
+        // 4. 慢指针进行操作移除慢指针的下一个节点
         // 此时 slowIndex 的位置就是待删除元素的前一个位置。
         // 具体情况可自己画一个链表长度为 3 的图来模拟代码来理解
         // 检查 slowIndex.next 是否为 null，以避免空指针异常
-        if (slowIndex.next != null) {
-            slowIndex.next = slowIndex.next.next;
+        if (slowPointer.next != null) {
+            slowPointer.next = slowPointer.next.next;
         }
 
         return dummyNode.next;
+
     }
 }

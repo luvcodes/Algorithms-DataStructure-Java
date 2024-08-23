@@ -67,7 +67,8 @@ public class _4SwapPairs24 {
         return dummyNode.next;
     }
 
-    /*// 辅助方法：打印链表
+    // 辅助方法：打印链表
+    /*
     public void printList(ListNode head) {
         ListNode current = head;
         while (current != null) {
@@ -81,18 +82,11 @@ public class _4SwapPairs24 {
 class ListNode {
     int value;
     ListNode next;
-
-    // 默认构造函数，用于创建值为0的节点，没有后续节点
-    ListNode() {
-    }
-
-    // 构造函数，用于创建一个给定值的节点，没有后续节点
+    ListNode() {}
     ListNode(int value) {
         this.value = value;
         this.next = null;
     }
-
-    // 构造函数，用于创建一个给定值的节点，并指定后续节点
     ListNode(int value, ListNode next) {
         this.value = value;
         this.next = next;
