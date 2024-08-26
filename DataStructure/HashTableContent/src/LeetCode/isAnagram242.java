@@ -6,9 +6,7 @@ package LeetCode;
  * 看是否两个string是anagram
  */
 public class isAnagram242 {
-    public static void main(String[] args) {
-
-    }
+    public static void main(String[] args) {}
 
     /**
      * 字母异位词解法
