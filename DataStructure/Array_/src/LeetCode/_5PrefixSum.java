@@ -35,6 +35,7 @@ public class _5PrefixSum {
         int preSum = 0;
         for (int i = 0; i < n; i++) {
             vec[i] = scanner.nextInt();
+            // 依次添加数组元素
             preSum += vec[i];
             prefixSum[i] = preSum;
         }
@@ -45,7 +46,6 @@ public class _5PrefixSum {
             int tail = scanner.nextInt();
 
             // 这里是核心代码，用tail在prefixSum数组中指向的元素值 减去 head指向元素的前一位元素的元素值
-            // 这个sum是最终要返回的结果
             int sum = 0;
             if (head == 0) {
                 sum = prefixSum[tail];
