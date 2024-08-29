@@ -5,13 +5,10 @@ import java.util.List;
 
 /**
  * @author yangrunze
- * LeetCode1002: https://leetcode.cn/problems/find-common-characters/description/
- * 查找字符串数组中多个元素的共有字符
+ * LeetCode1002: 查找字符串数组中多个元素的共有字符
  */
-public class commonChars1002 {
-    public static void main(String[] args) {
-
-    }
+public class _2commonChars1002 {
+    public static void main(String[] args) {}
 
     /**
      这个方法的核心概念有点像 LeetCode20，就是使用数组来模拟哈希表
@@ -37,6 +34,7 @@ public class commonChars1002 {
         for (int i = 1; i < words.length; i++) {
             // 声明另一个 hash table 也是用来承载 26 个英文字母，每个字母是一个字符
             int[] anotherHash = new int[26];
+
             // 遍历第二个元素，是一个字符串，所以这里要用 length() 带括号的
             // 说明：数组的 length 直接就用 length，字符串的长度要加上括号 length()
             for (int j = 0; j < words[i].length(); j++) {
