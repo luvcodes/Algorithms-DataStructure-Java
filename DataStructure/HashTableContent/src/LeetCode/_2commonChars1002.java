@@ -14,49 +14,43 @@ public class _2commonChars1002 {
      这个方法的核心概念有点像 LeetCode20，就是使用数组来模拟哈希表
      */
     public List<String> commonChars(String[] words) {
-        // 创建 list 来存储最终结果
+        // 创建存储最终结果的ArrayList
         List<String> result = new ArrayList<>();
-        // 首先判断输入是否为空，为空则直接返回
-        if (words.length == 0) {
-            return result;
-        }
+        if (words.length == 0) return result;
 
-        // 创建数组作为 hash table 来存储 26 个小写英文字母
-        int[] hash = new int[26];
+        // 存储26个英文字母
+        int[] alphabet = new int[26];
 
-        // 使用数组中第一个元素，也就是第一个字符串来声明 hash table
+        // 遍历words字符串数组的第一个元素，存储第一个字符串 (元素) 的每一个字符的ASCII码
         for (int i = 0; i < words[0].length(); i++) {
-            hash[words[0].charAt(i) - 'a']++;
+            alphabet[words[0].charAt(i) - 'a']++;
         }
 
-        // 开始遍历输入的字符串数组中的第二个到最后一个字符串的重复字符出现频率
-        // 从第二个元素开始，也就是第二个字符串，i = 1，填充新的 hash table
+        // 遍历第二个元素、以及剩下的元素，存储到新的数组中
         for (int i = 1; i < words.length; i++) {
-            // 声明另一个 hash table 也是用来承载 26 个英文字母，每个字母是一个字符
+            // 创建新的数组来存储除第一个字符串以外其他的字符串
             int[] anotherHash = new int[26];
 
-            // 遍历第二个元素，是一个字符串，所以这里要用 length() 带括号的
-            // 说明：数组的 length 直接就用 length，字符串的长度要加上括号 length()
             for (int j = 0; j < words[i].length(); j++) {
                 anotherHash[words[i].charAt(j) - 'a']++;
             }
 
-            // 更新hash，保证hash里统计26个字符在所有字符串里出现的最小次数
-            // 将新的 hash table 和原来的一开始的 hash table 放在 min 方法中得到最小值
+            // 更新结果数组，保证数组中26个字符的对应位置的值都是字符出现的最小次数
             for (int k = 0; k < 26; k++) {
-                hash[k] = Math.min(hash[k], anotherHash[k]);
+                alphabet[k] = Math.min(alphabet[k], anotherHash[k]);
             }
 
         }
 
-        // 转换输出格式
+        // 输出最终结果，也就是说输出最终数组中的不为0的元素值所对应的字母
         for (int i = 0; i < 26; i++) {
-            // 不等于 0 的部分所对应的字母就是结果需要统计的字母
-            while (hash[i] != 0) {
+            while (alphabet[i] != 0) {
+                // 这里将当前索引 i 加上字符 'a' 的 ASCII 值，得到对应小写字母的 ASCII 值，
+                // 然后将其强制转换为字符类型，得到了一个小写字母 ch。
                 char ch = (char) (i + 'a');
+                // 将字符 ch 转换为字符串, 添加到最终的结果ArrayList中result
                 result.add(String.valueOf(ch));
-                // 结果数组中填充了一个字符，有些字符可能是大于 1 的，所以当前数值-1
-                hash[i]--;
+                alphabet[i]--;
             }
         }
 
