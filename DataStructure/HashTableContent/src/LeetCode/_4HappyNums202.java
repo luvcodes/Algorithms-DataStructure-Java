@@ -6,7 +6,7 @@ import java.util.Set;
 /**
  * @author yangrunze
  */
-public class HappyNums202 {
+public class _4HappyNums202 {
     public static void main(String[] args) {}
 
     private int getNext(int n) {
