@@ -18,27 +18,13 @@ public class _1isAnagram242 {
     public static void main(String[] args) {}
 
     /**
-     * 方法一: 对字符串 s 和 t 分别排序，看排序后的字符串是否相等即可判断
-     * */
-    public boolean isAnagram1(String s, String t) {
-        if (s.length() != t.length()) {
-            return false;
-        }
-        char[] str1 = s.toCharArray();
-        char[] str2 = t.toCharArray();
-        Arrays.sort(str1);
-        Arrays.sort(str2);
-        return Arrays.equals(str1, str2);
-    }
-
-    /**
      * 方法二
      * 1. 判断输入的两个字符串长度是否相等，如果不相等直接返回false，因为不可能是字母异位词
      * 2. 初始化int数组为26承载每一个字符的ASCII码
      * 3. 分别遍历字符串s和t，可以理解成分割成了两个数组，前13个位置负责增加数值，t负责再对应位置减少
      * 4. 遍历26位的数组，如果所有数值都为0，则s和t为字母异位词
      * */
-    public boolean isAnagram3(String s, String t) {
+    public boolean isAnagram2(String s, String t) {
         int[] record = new int[26];
 
         for (int i = 0; i < s.length(); i++) {
@@ -61,6 +47,20 @@ public class _1isAnagram242 {
 
         // record数组所有元素都为零0，说明字符串s和t是字母异位词
         return true;
+    }
+
+    /**
+     * 方法一: 对字符串 s 和 t 分别排序，看排序后的字符串是否相等即可判断
+     * */
+    public boolean isAnagram1(String s, String t) {
+        if (s.length() != t.length()) {
+            return false;
+        }
+        char[] str1 = s.toCharArray();
+        char[] str2 = t.toCharArray();
+        Arrays.sort(str1);
+        Arrays.sort(str2);
+        return Arrays.equals(str1, str2);
     }
 
 }
