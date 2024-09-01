@@ -14,6 +14,12 @@ public class _4HappyNums202 {
         System.out.println(isHappy(21));
     }
 
+    /**
+     * 每次计算下一个数之前，都会检查这个数是否已经在record中。如果已经出现过，那么就意味着我们遇到了一个循环，
+     * 可以立即停止计算并返回false。如果没有出现过，就将这个数添加到record中，然后继续计算下一个数。
+     * @param n
+     * @return
+     */
     public static boolean isHappy(int n) {
         Set<Integer> seen = new HashSet<>();
         while (n != 1 && !seen.contains(n)) {
