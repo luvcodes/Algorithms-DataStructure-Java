@@ -1,6 +1,5 @@
 package LeetCode;
 
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -79,6 +78,10 @@ public class _3arrayIntersection349 {
         return finalResult;
     }
 
+
+    /**
+     * 递归法
+     * */
     public int[] intersection1(int[] nums1, int[] nums2) {
         Set<Integer> set1 = new HashSet<>();
         Set<Integer> set2 = new HashSet<>();
@@ -91,9 +94,7 @@ public class _3arrayIntersection349 {
         return getIntersection(set1, set2);
     }
 
-    /**
-     * 递归法
-     * */
+
     public int[] getIntersection(Set<Integer> set1, Set<Integer> set2) {
         if (set1.size() > set2.size()) {
             return getIntersection(set2, set1);

@@ -6,7 +6,7 @@ import java.util.HashMap;
  * LeetCode0001: 两数之和，给定target，找出数组中的两个数相加为target值的元素下标
  * */
 @SuppressWarnings("all")
-public class _5SumOfTwoElements0001 {
+public class _5SumTwo0001 {
     public static void main(String[] args) {}
 
     /**
@@ -31,7 +31,8 @@ public class _5SumOfTwoElements0001 {
 
     /**
      * 方法二: 使用哈希表，可以将寻找 target - x 的时间复杂度降低到从 O(N) 降低到 O(1)。
-     * 这样我们创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，
+     * 选择Hash表的原因是，当我们需要查询一个元素是否出现过，或者一个元素是否在集合里的时候 (主要原因)，就要第一时间想到哈希法。
+     * 创建一个哈希表，对于每一个 x，我们首先查询哈希表中是否存在 target - x，
      * 然后将 x 插入到哈希表中，即可保证不会让 x 和自己匹配。
      * HashMap: key->元素值, value->下标
      * 这样存储的原因是key存储元素值才能把元素查出来，然后去访问下标
