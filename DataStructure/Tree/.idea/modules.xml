@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/AVLTreeDemo/AVLTreeDemo.iml" filepath="$PROJECT_DIR$/AVLTreeDemo/AVLTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BInarySearchTreeDemo/BInarySearchTreeDemo.iml" filepath="$PROJECT_DIR$/BInarySearchTreeDemo/BInarySearchTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/BinaryTreeDemo/BinaryTreeDemo.iml" filepath="$PROJECT_DIR$/BinaryTreeDemo/BinaryTreeDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HuffmanCode/HuffmanCode.iml" filepath="$PROJECT_DIR$/HuffmanCode/HuffmanCode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/HuffmanTree/HuffmanTree.iml" filepath="$PROJECT_DIR$/HuffmanTree/HuffmanTree.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/Tree.iml" filepath="$PROJECT_DIR$/.idea/Tree.iml" />
+    </modules>
+  </component>
+</project>
