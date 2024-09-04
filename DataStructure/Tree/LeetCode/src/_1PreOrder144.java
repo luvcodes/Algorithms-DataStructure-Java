@@ -51,5 +51,9 @@ public class _1PreOrder144 {
             if (node.left != null) stack.push(node.left);
         }
     }
+
+    public static void preOrderIterateUniversal(TreeNode root, List<Integer> result) {
+
+    }
 }
 
