@@ -1,3 +1,6 @@
+/**
+ * Define the TreeNode for all Tree-related classes
+ * */
 public class TreeNode {
     int val;
     TreeNode left;
