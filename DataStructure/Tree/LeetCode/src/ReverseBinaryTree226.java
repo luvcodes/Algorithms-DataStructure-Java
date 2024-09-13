@@ -2,9 +2,7 @@ import java.util.ArrayDeque;
 
 @SuppressWarnings("all")
 public class ReverseBinaryTree226 {
-    public static void main(String[] args) {
-
-    }
+    public static void main(String[] args) {}
 
     // DFS
     /**
