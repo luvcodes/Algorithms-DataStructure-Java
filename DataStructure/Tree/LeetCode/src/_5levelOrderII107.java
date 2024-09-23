@@ -85,8 +85,6 @@ public class _5levelOrderII107 {
     /**
      * 递归法实现
      * */
-    public void checkFun02(TreeNode root, Integer depth) {
-
-    }
+    public void checkFun02(TreeNode root, Integer depth) {}
 
 }
