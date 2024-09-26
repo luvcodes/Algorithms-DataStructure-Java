@@ -82,7 +82,6 @@ public class _4levelOrder102 {
             while (len > 0) {
                 TreeNode tmpNode = que.poll();
                 itemList.add(tmpNode.val);
-
                 if (tmpNode.left != null) que.offer(tmpNode.left);
                 if (tmpNode.right != null) que.offer(tmpNode.right);
                 len--;
