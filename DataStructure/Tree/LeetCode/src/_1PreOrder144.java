@@ -9,7 +9,11 @@ import java.util.Stack;
 public class _1PreOrder144 {
     public static void main(String[] args) {}
 
-
+    /**
+     * 实现二叉树前序遍历的第一种方式
+     * 1. 使用递归法实现前序遍历
+     * @return List<Integer> result, arraylist
+     * */
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         preOrderRecursion(root, result);
@@ -19,6 +23,7 @@ public class _1PreOrder144 {
     /**
      * 递归法实现二叉树的前序遍历
      * 中、前、后的顺序进行存储、递归
+     * @return void 返回最终存储到res结果数组的成果即可
      * */
     public static void preOrderRecursion(TreeNode root, List<Integer> result) {
         // 判断root是否为null，是null的话就直接返回
@@ -52,8 +57,6 @@ public class _1PreOrder144 {
         }
     }
 
-    public static void preOrderIterateUniversal(TreeNode root, List<Integer> result) {
-
-    }
+    public static void preOrderIterateUniversal(TreeNode root, List<Integer> result) {}
 }
 
