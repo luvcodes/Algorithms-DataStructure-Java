@@ -18,8 +18,10 @@ public class _5levelOrderII107 {
 
     public List<List<Integer>> result = new ArrayList<>();
 
+    /**
+     * 迭代法实现
+     * */
     public List<List<Integer>> levelOrderBottom(TreeNode root) {
-        // 迭代法实现
         checkFun01(root);
 
         return result;
