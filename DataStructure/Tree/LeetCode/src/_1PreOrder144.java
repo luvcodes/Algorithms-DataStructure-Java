@@ -57,6 +57,6 @@ public class _1PreOrder144 {
         }
     }
 
-    public static void preOrderIterateUniversal(TreeNode root, List<Integer> result) {}
+    // public static void preOrderIterateUniversal(TreeNode root, List<Integer> result) {}
 }
 
