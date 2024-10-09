@@ -18,7 +18,6 @@ public class _3InOrder94 {
      * */
     public void inOrderRecursion(TreeNode root, List<Integer> result) {
         if (root == null) return;
-
         inOrderRecursion(root.left, result);
         result.add(root.val);
         inOrderRecursion(root.right, result);
@@ -30,7 +29,6 @@ public class _3InOrder94 {
     public void inOrderIterate(TreeNode root, List<Integer> result) {
         // 判断root是否为null
         if (root == null) return;
-
         Stack<TreeNode> stack = new Stack<>();
         // 设置current指针指向当前节点
         TreeNode cur = root;
