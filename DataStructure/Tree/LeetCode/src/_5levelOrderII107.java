@@ -66,7 +66,6 @@ public class _5levelOrderII107 {
         // 10. 反转result数组
         // 10.1 使用Collections.reverse API来实现反转
         // Collections.reverse(result);
-
         // 10.2 当前result数组直接反转
         for (int i = 0; i < result.size() / 2; i++) {
             List<Integer> temp = result.get(i);
