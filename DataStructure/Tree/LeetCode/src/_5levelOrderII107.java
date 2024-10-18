@@ -11,7 +11,6 @@ public class _5levelOrderII107 {
         treeNode.right = new TreeNode(20);
         treeNode.right.left = new TreeNode(15);
         treeNode.right.right = new TreeNode(7);
-
         _5levelOrderII107 solution = new _5levelOrderII107();
         System.out.println(solution.levelOrderBottom(treeNode));
     }
