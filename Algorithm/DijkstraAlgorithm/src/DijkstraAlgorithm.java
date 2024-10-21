@@ -90,7 +90,9 @@ class Graph {
     }
 }
 
-// 已访问顶点集合
+/**
+ * 已访问顶点集合
+ * */
 class VisitedVertex {
     // 记录各个顶点是否访问过 1表示访问过,0未访问, 会动态更新
     public int[] alreadyVisitedArr;
