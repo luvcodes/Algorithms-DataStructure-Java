@@ -1,12 +1,13 @@
 package LeetCode;
 
-
 /**
  * @author ryanw
  */
 @SuppressWarnings("all")
 public class _3ReverseLinkedList206 {
     public static void main(String[] args) {
+        // 原链表
+        // 1 -> 2 -> 3 -> 4 -> 5
         ListNode head = new ListNode(1);
         head.next = new ListNode(2);
         head.next.next = new ListNode(3);
@@ -20,18 +21,7 @@ public class _3ReverseLinkedList206 {
         System.out.println("递归法反转后的链表:");
         printList(reversedHeadRecursive);
 
-
         /*_3ReverseLinkedList206 solution = new _3ReverseLinkedList206();
-
-        // 创建链表 1 -> 2 -> 3 -> 4 -> 5
-        ListNode head = new ListNode(1);
-        head.next = new ListNode(2);
-        head.next.next = new ListNode(3);
-        head.next.next.next = new ListNode(4);
-        head.next.next.next.next = new ListNode(5);
-
-        System.out.println("原链表:");
-        printList(head);
 
         // 迭代法反转链表
         ListNode reversedHeadIterative = solution.reverseListIterative(head);
@@ -44,11 +34,7 @@ public class _3ReverseLinkedList206 {
         head.next.next = new ListNode(3);
         head.next.next.next = new ListNode(4);
         head.next.next.next.next = new ListNode(5);
-
-        // 递归法反转链表
-        ListNode reversedHeadRecursive = solution.reverseListRecursive(head);
-        System.out.println("递归法反转后的链表:");
-        solution.printList(reversedHeadRecursive);*/
+        */
 
     }
 
@@ -76,8 +62,9 @@ public class _3ReverseLinkedList206 {
         return prev;
     }
 
+
     // 2. 正向递归反转链表
-    /*public ListNode reverseList(ListNode head) {
+    public ListNode reverseList(ListNode head) {
         return reverse(null, head);
     }
 
@@ -98,7 +85,7 @@ public class _3ReverseLinkedList206 {
         // cur = temp;
 
         return reverse(cur, temp);
-    }*/
+    }
 
 
     // 3. 从后向前递归反转链表
